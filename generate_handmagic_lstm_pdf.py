@@ -95,6 +95,9 @@ def main():
     for idx, entry in enumerate(entries):
         line = entry["text"]
         print(f"[{idx+1}/{len(entries)}] {line}", flush=True)
+        # Hand Magic's LSTM stores EOS on the model instance, so reset it
+        # between independent handwritten lines.
+        model.EOS = False
         gen_seq, _ = generate_conditional_sequence(
             model,
             line,
