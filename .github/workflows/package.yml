@@ -27,3 +27,5 @@ jobs:
           name: HandMagic-Previews
           path: output/page_*.png
           if-no-files-found: error
+
+# repack after coordinate fix
