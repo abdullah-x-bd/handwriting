@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v4
-        with:
-          lfs: true
 
       - name: Checkout real Hand Magic
         uses: actions/checkout@v4
@@ -45,10 +43,10 @@ jobs:
           pip install numpy pillow matplotlib reportlab
           pip install torch --index-url https://download.pytorch.org/whl/cpu
 
-      - name: Generate with Hand Magic Transformer
-        run: python generate_handmagic_pdf.py
+      - name: Generate with real Hand Magic LSTM
+        run: python generate_handmagic_lstm_pdf.py
 
-      - name: Commit generated PDF and page previews
+      - name: Commit generated PDF and previews
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
