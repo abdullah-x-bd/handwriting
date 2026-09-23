@@ -1,0 +1,29 @@
+name: Package Hand Magic PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/package.yml"
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shah-Waliullah-HandMagic
+          path: output/Shah_Waliullah_HandMagic.pdf
+          if-no-files-found: error
+
+      - name: Upload previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: HandMagic-Previews
+          path: output/page_*.png
+          if-no-files-found: error
