@@ -68,12 +68,14 @@ def bbox_of_segments(segments):
     return float(a[:,0].min()), float(a[:,1].min()), float(a[:,0].max()), float(a[:,1].max())
 
 def draw_segments(page, segments, x0, y0, scale, width=3):
-    minx, miny, _, _ = bbox_of_segments(segments)
+    minx, miny, maxx, maxy = bbox_of_segments(segments)
     d = ImageDraw.Draw(page)
     for seg in segments:
         if len(seg) < 2:
             continue
-        pts = [(x0 + (x-minx)*scale, y0 + (y-miny)*scale) for x,y in seg]
+        # Hand Magic uses Cartesian coordinates where +Y is upward.
+        # Image coordinates use +Y downward, so invert Y when composing.
+        pts = [(x0 + (x-minx)*scale, y0 + (maxy-y)*scale) for x,y in seg]
         d.line(pts, fill=INK, width=width, joint="curve")
 
 def main():
