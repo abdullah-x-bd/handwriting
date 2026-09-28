@@ -1,0 +1,47 @@
+Part C.9
+
+Karl Marx’s theory of surplus value is central to his analysis of capitalism. It explains how profit arises from the production process and also provides the basis for his theory of capital accumulation. Marx developed his argument from the labour theory of value, although he gave it a form different from earlier classical economists.
+
+According to Marx, the value of a commodity depends on the socially necessary labour time required for its production. Socially necessary labour time means the labour required under normal conditions of production using the average level of skill and technology prevailing in society.
+
+Under capitalism, workers do not sell labour itself. They sell labour power, meaning their capacity to work for a particular period. Labour power is also treated as a commodity.
+
+The value of labour power is determined by the value of the goods and services necessary for the maintenance and reproduction of the worker. In practical terms, this is represented by wages.
+
+The important point in Marx’s argument is that the value produced by workers during the working day can exceed the value of their labour power. Suppose a worker receives wages equivalent to the value produced in six hours but works for ten hours. The first six hours represent necessary labour time. During this period, the worker produces value equivalent to the wage received. The remaining four hours constitute surplus labour time.
+
+The value created during surplus labour time is surplus value. The worker produces this value, but it is appropriated by the capitalist because the capitalist owns the means of production and the final product.
+
+Marx divided capital into constant capital and variable capital. Constant capital consists of expenditure on machinery, buildings, raw materials and other means of production. According to Marx, these inputs transfer their existing value to the final product but do not create new value.
+
+Variable capital is expenditure on labour power. It is called variable because labour has the capacity to create new value greater than the value paid to workers as wages.
+
+If surplus value is represented by s and variable capital by v, the rate of surplus value is
+
+s/v.
+
+Marx interpreted this as the rate of exploitation of labour.
+
+Capitalists can increase surplus value in two important ways. Absolute surplus value is increased by extending the working day or increasing the intensity of labour. Relative surplus value is increased by raising productivity. Higher productivity reduces the labour time necessary to produce the commodities required for workers’ subsistence, thereby increasing the proportion of the working day that produces surplus value.
+
+The theory of surplus value leads directly to Marx’s theory of capital accumulation. Capitalists do not consume the entire surplus value. A part of it is reinvested in machinery, technology and additional production. The conversion of surplus value into additional capital is called capital accumulation.
+
+Competition makes accumulation necessary. A capitalist who does not invest in improved methods may be unable to compete with firms that introduce more productive technology. Accumulation therefore becomes a continuous feature of capitalism.
+
+Marx argued that accumulation tends to increase the organic composition of capital. This means that investment in machinery and other means of production tends to rise relative to investment in labour power.
+
+Technological change may displace some workers. Marx referred to the resulting unemployed and underemployed population as the industrial reserve army. Its existence can weaken the bargaining position of employed workers because employers have access to alternative labour.
+
+Marx also argued that capitalism tends towards concentration and centralisation of capital. Concentration occurs when individual capitals grow through accumulation. Centralisation occurs when existing capitals are combined through mergers, takeovers or the disappearance of weaker firms.
+
+The theory has several important strengths. Marx recognised capitalism as a dynamic system driven by competition, technological change and reinvestment. He also drew attention to the distribution of income between wages and profits and to differences in ownership and bargaining power.
+
+However, the theory has also been heavily criticised. The labour theory of value is not accepted by mainstream neoclassical economics as a complete theory of value. Marginalist economists argue that prices depend on both scarcity and preferences, as well as production conditions.
+
+A further difficulty is the transformation problem. Marx needed to explain how labour values are transformed into actual prices of production when industries use different proportions of labour and capital. This became the subject of extensive debate among economists.
+
+Some of Marx’s historical predictions have also required qualification. Real wages have increased considerably in many capitalist economies. Trade unions, welfare states, labour laws and democratic political institutions have also changed the relationship between workers and employers.
+
+At the same time, some parts of Marx’s analysis continue to attract attention. Large-scale firms, technological displacement of labour, concentration of ownership and persistent debates over the distribution of income remain important economic questions.
+
+Therefore, Marx’s theory of surplus value and accumulation should be understood both as a theory of exploitation and as a broader theory of capitalist development. Even where the labour theory of value is rejected, Marx’s emphasis on accumulation, competition, technology and distribution remains important in the history of economic thought.
