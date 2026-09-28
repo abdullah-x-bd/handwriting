@@ -27,8 +27,8 @@ BG=(255,255,253)
 
 # Chosen after comparison testing: this Hand Magic writer is the cleanest of
 # the tested built-in styles on normal full lines.
-PRIME_INDEX=3318
-BIAS=20.0
+PRIME_INDEX=2808
+BIAS=24.0
 WRAP_CHARS=42
 TARGET_H=70
 LINE_STEP=92
