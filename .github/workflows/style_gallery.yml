@@ -1,0 +1,32 @@
+name: Hand Magic Style Gallery
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/style_gallery.yml"
+  workflow_dispatch:
+jobs:
+  gallery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pillow
+      - run: python style_gallery.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-style-gallery
+          path: style_gallery.png
+          retention-days: 7
