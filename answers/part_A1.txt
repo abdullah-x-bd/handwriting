@@ -1,0 +1,9 @@
+Part A.1
+
+Adam Smith used the term "Invisible Hand" to explain how individuals pursuing their own economic interests may unintentionally promote the interest of society. In a market economy, a producer generally aims at earning profit, while a consumer tries to obtain maximum satisfaction from income. Yet, through the price mechanism and competition, these separate decisions can become coordinated.
+
+If consumers demand more of a commodity, its price and profitability tend to rise. Producers then have an incentive to increase its supply. Similarly, if demand falls, resources tend to move away from that activity. Thus, market prices provide signals regarding where labour and capital should be employed.
+
+Smith's argument was that under conditions of competition, private property and freedom of exchange, self-interest can lead resources towards uses valued by society even though no individual intends to achieve this wider result.
+
+The Invisible Hand does not imply that government has no role. Smith recognised important functions of the state, particularly defence, administration of justice and certain public works. The concept mainly expresses his belief in the coordinating power of decentralized markets.
