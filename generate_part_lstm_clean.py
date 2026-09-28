@@ -34,7 +34,7 @@ TARGET_H=82
 HEADING_H=96
 INK=(23,57,126)
 BG=(255,255,253)
-BIAS=8.0
+BIAS=10.0
 
 random.seed(1703)
 np.random.seed(1703)
@@ -98,6 +98,18 @@ device="cpu"
 startup_singletons(str(HM/"data")+"/",str(HM/"weights"/"lstm.pt"),device)
 model=ModelSingleton._model
 
+# Use a clear built-in Hand Magic handwriting sample as the style condition.
+# This comes from Hand Magic's bundled training data, not from a font and not
+# from any user-supplied handwriting.
+PRIME_INDEX=4850
+_prime_strokes=np.load(HM/"data"/"strokes.npy",allow_pickle=True,encoding="bytes")
+_prime_texts=(HM/"data"/"sentences.txt").read_text(encoding="utf-8",errors="ignore").splitlines()
+_prime=_prime_strokes[PRIME_INDEX].astype(np.float32).copy()
+_prime[:,1:]-=StatsSingleton.train_mean
+_prime[:,1:]/=StatsSingleton.train_std
+PRIME_TENSOR=torch.from_numpy(_prime).unsqueeze(0).to(device)
+PRIME_TEXT=_prime_texts[PRIME_INDEX]
+
 raw=SOURCE.read_text(encoding="utf-8").strip()
 paragraphs=[p.strip() for p in raw.split("\n\n") if p.strip()]
 if len(paragraphs) >= 2 and paragraphs[0].lower().startswith("part "):
@@ -111,29 +123,22 @@ for pi,p in enumerate(paragraphs):
         entries.append({"text":p,"paragraph":pi,"heading":False,"equation":True})
     else:
         # Shorter lines substantially reduce malformed Hand Magic generations.
-        for line in textwrap.wrap(p,width=36,break_long_words=False,break_on_hyphens=False):
+        for line in textwrap.wrap(p,width=30,break_long_words=False,break_on_hyphens=False):
             entries.append({"text":line,"paragraph":pi,"heading":False,"equation":False})
 
 generated=[]
 for idx,e in enumerate(entries):
     line=e["text"]
     print(f"[{PART}] {idx+1}/{len(entries)} {line}",flush=True)
-    candidates=[]
-    for attempt in range(2):
-        torch.manual_seed(20260928 + idx*101 + attempt)
-        np.random.seed(20260928 + idx*101 + attempt)
-        model.EOS=False
-        gen,_=generate_conditional_sequence(
-            model,line,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
-            bias=BIAS,prime=False,prime_seq=None,real_text="",is_map=False,batch_size=1
-        )
-        eos_ok=bool(model.EOS)
-        seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
-        ratio=len(seq)/max(1,len(line))
-        # Typical clean Hand Magic lines are around 17 stroke steps per character.
-        score=abs(ratio-17.0) + (0.0 if eos_ok else 100.0)
-        candidates.append((score,seq))
-    _,seq=min(candidates,key=lambda x:x[0])
+    torch.manual_seed(20260928 + idx*101)
+    np.random.seed(20260928 + idx*101)
+    model.EOS=False
+    gen,_=generate_conditional_sequence(
+        model,line,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+        bias=BIAS,prime=True,prime_seq=PRIME_TENSOR,real_text=PRIME_TEXT,
+        is_map=False,batch_size=1
+    )
+    seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
     segs=seq_segments(seq)
     bb=bbox(segs)
     generated.append({**e,"segs":segs,"w":max(1.0,bb[2]-bb[0]),"h":max(1.0,bb[3]-bb[1])})
