@@ -1,0 +1,51 @@
+Part C.11
+
+William Stanley Jevons was one of the major economists associated with the Marginal Revolution of the nineteenth century. His Theory of Political Economy, first published in 1871, attempted to explain economic value through utility and marginal analysis. Together with Carl Menger and Léon Walras, Jevons helped shift economic theory away from the classical emphasis on labour and cost towards individual choice and marginal utility.
+
+Jevons began with the idea that human beings seek pleasure and attempt to avoid pain. Economic behaviour can therefore be studied by examining how individuals allocate scarce resources in order to obtain the greatest possible satisfaction.
+
+Utility refers to the capacity of a commodity to satisfy a human want. Jevons stressed that utility does not exist independently of the consumer. The same commodity may have different utility for different people or for the same person under different circumstances.
+
+The central concept in his theory is the final degree of utility, which is close to the modern concept of marginal utility. Marginal utility means the additional satisfaction obtained from consuming one additional unit of a commodity.
+
+Jevons argued that marginal utility diminishes as the quantity of a commodity available to a person increases. Suppose a consumer has only a small quantity of food. The first units satisfy very urgent wants and therefore have high marginal utility. As additional units become available, less urgent wants are satisfied, so the marginal utility of each additional unit falls.
+
+This reasoning can be expressed as the principle of diminishing marginal utility.
+
+Jevons used this concept to explain the paradox of value. Water is essential for life and has extremely high total utility, yet it normally has a low exchange value. Diamonds have much lower total usefulness, yet their price may be very high.
+
+The explanation lies in scarcity and marginal utility. Water is generally abundant, so the marginal utility of an additional unit is low. Diamonds are scarce, so the marginal utility of an additional unit can be high. Market value is therefore more closely related to marginal utility than to total utility.
+
+Jevons also applied utility theory to exchange. A consumer distributes expenditure among different commodities so as to maximise total satisfaction. If one commodity gives greater marginal utility relative to its price than another commodity, the consumer can increase satisfaction by purchasing more of the first commodity and less of the second.
+
+The process continues until the marginal utilities obtained from the last units of expenditure are equalised. In modern notation, for two commodities X and Y, consumer equilibrium can be represented as
+
+MUx/Px = MUy/Py.
+
+This is the equi-marginal principle. It later became an important part of neoclassical consumer theory.
+
+Jevons strongly criticised the classical labour theory of value. According to classical economists such as Ricardo, labour cost played a central role in determining value. Jevons argued that value depends ultimately on utility at the margin.
+
+However, Jevons did not completely ignore production costs. His argument was that cost of production affects supply, supply affects the quantity available, quantity affects marginal utility and marginal utility influences value. Thus, cost has an indirect influence on value.
+
+Jevons’s theory made several major contributions. First, it placed marginal analysis at the centre of economics. Decisions depend on the benefits and costs of small additional changes rather than simply on total quantities.
+
+Second, the theory provided an explanation of consumer choice. Consumers allocate scarce income among competing wants according to the marginal utilities associated with different goods.
+
+Third, Jevons contributed to the development of mathematical economics. He believed that economic relationships could be expressed formally and that economics should make greater use of mathematical reasoning.
+
+Despite these contributions, the theory has important limitations.
+
+One major problem is the assumption that utility can be measured cardinally. Early marginal utility theory often treated utility as if numerical units of satisfaction could be assigned to different levels of consumption. In reality, there is no objective unit for measuring satisfaction.
+
+Modern consumer theory therefore generally uses ordinal utility. Under the ordinal approach, consumers only need to rank different combinations of goods according to preference. They do not need to state exactly how many units of satisfaction each combination provides.
+
+A second difficulty arises from interpersonal comparisons of utility. Even if an individual can rank personal preferences, there is no scientific method of establishing that the satisfaction obtained by one person is exactly equal to or greater by a definite numerical amount than the satisfaction obtained by another person.
+
+A third criticism concerns the assumption of rational behaviour. Jevons’s framework assumes that consumers consistently compare utilities and allocate resources to maximise satisfaction. Actual behaviour may be affected by habits, incomplete information, advertising, uncertainty and psychological factors.
+
+A fourth limitation is that utility alone cannot provide a complete theory of market price. A high marginal utility does not automatically produce a high market price if supply conditions are ignored. Marshall later provided a more complete explanation in which both demand and supply determine price.
+
+Jevons’s theory nevertheless marked a major turning point in economic thought. His emphasis on diminishing marginal utility, scarcity, choice and marginal adjustment became central to neoclassical economics.
+
+Therefore, while the cardinal measurement of utility and some behavioural assumptions of Jevons’s theory were later rejected or modified, his central contribution remains highly important. By explaining value and consumer choice through marginal utility, Jevons helped establish the analytical foundation from which modern microeconomic theory developed.
