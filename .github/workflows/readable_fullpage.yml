@@ -1,4 +1,4 @@
-name: Hand Magic Readable Full-Page A1 v2
+name: Hand Magic Readable Full-Page A1 v3
 on:
   push:
     branches: [main]
