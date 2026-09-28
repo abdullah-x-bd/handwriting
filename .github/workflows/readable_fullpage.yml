@@ -1,0 +1,35 @@
+name: Hand Magic Readable Full-Page A1
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/readable_fullpage.yml"
+  workflow_dispatch:
+jobs:
+  sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python readable_fullpage_sample.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-readable-fullpage-A1
+          path: readable_fullpage_sample/
+          retention-days: 7
