@@ -21,7 +21,7 @@ OUT.mkdir(exist_ok=True)
 
 PAGE_W,PAGE_H=2480,3508
 LEFT,RIGHT=150,2330
-TOP,BOTTOM=145,3360
+TOP,BOTTOM=145,3430
 INK=(22,55,123)
 BG=(255,255,253)
 
@@ -246,7 +246,7 @@ base=sum(max(72.0,rh)+18.0 for _,_,_,rh in geoms) + para_breaks*PARA_GAP
 available=BOTTOM-TOP
 extra=max(0.0,available-base)
 gap_extra=(extra/max(1,len(geoms)-1)) if len(geoms)>1 else 0.0
-gap_extra=min(gap_extra,45.0)
+gap_extra=min(gap_extra,32.0)
 
 page=Image.new("RGB",(PAGE_W,PAGE_H),BG)
 y=TOP
