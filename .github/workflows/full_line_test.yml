@@ -1,0 +1,35 @@
+name: Hand Magic Full-Line Readability Test
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/full_line_test.yml"
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python full_line_readability_test.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-full-line-readability
+          path: full_line_readability_test/*.png
+          retention-days: 7
