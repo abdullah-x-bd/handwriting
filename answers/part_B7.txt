@@ -1,0 +1,21 @@
+Part B.7
+
+Say's Law of Markets is associated with the French classical economist Jean Baptiste Say. It became an important part of classical economic thought. The law is commonly summarized by the statement that "supply creates its own demand." The meaning of this statement is that the process of production itself creates the income necessary to purchase the goods produced.
+
+When a firm produces goods, it makes payments to the owners of factors of production in the form of wages, rent, interest and profit. Therefore, production generates an amount of income equal to the value of output. The recipients of this income can use it to purchase goods and services.
+
+Say's Law does not mean that every individual commodity will necessarily find a buyer. There can be excess supply of one commodity and excess demand for another. The classical argument was mainly directed against the possibility of a persistent general glut in which all commodities remain unsold because total demand is inadequate.
+
+An important question concerns saving. If households save part of their income instead of spending it on consumption, total consumption demand falls. Classical economists believed that this would not create a permanent deficiency of demand because saving would be converted into investment.
+
+The rate of interest was expected to bring saving and investment into equality. If saving increased, the supply of loanable funds would rise. This would reduce the interest rate and encourage firms to borrow and invest. Thus, income not spent on consumption would return to the expenditure stream through investment.
+
+Say's Law was extremely important in classical economics because it supported the belief that a competitive economy tends towards full employment. General unemployment caused by insufficient aggregate demand was considered unlikely to persist. Flexible prices, wages and interest rates were expected to restore equilibrium.
+
+The law therefore also supported the classical preference for limited government intervention. If markets possess strong self-correcting mechanisms, large-scale government management of aggregate demand is unnecessary.
+
+Keynes strongly criticised this reasoning. He argued that saving and investment are undertaken by different economic agents for different reasons. An increase in saving does not automatically produce an equal increase in investment. Investment depends on expected profitability and the rate of interest. If expectations are pessimistic, firms may not invest even when interest rates are low.
+
+In such a situation, a fall in consumption can reduce aggregate demand, output and employment. Keynes therefore rejected the classical conclusion that aggregate demand must automatically be sufficient to purchase full-employment output.
+
+Say's Law remains important mainly because it represents a central principle of classical macroeconomic reasoning. The Keynesian rejection of the law later became one of the major foundations of modern macroeconomics.
