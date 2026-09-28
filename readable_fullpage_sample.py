@@ -28,6 +28,7 @@ BG=(255,255,253)
 # Chosen after comparison testing: this Hand Magic writer is the cleanest of
 # the tested built-in styles on normal full lines.
 PRIME_INDEX=2808
+FALLBACK_INDEX=1021
 BIAS=24.0
 WRAP_CHARS=42
 TARGET_H=70
@@ -121,6 +122,12 @@ prime[:,1:]/=StatsSingleton.train_std
 prime_t=torch.from_numpy(prime).unsqueeze(0).to(device)
 real=texts[PRIME_INDEX]
 
+fallback=strokes[FALLBACK_INDEX].astype(np.float32).copy()
+fallback[:,1:]-=StatsSingleton.train_mean
+fallback[:,1:]/=StatsSingleton.train_std
+fallback_t=torch.from_numpy(fallback).unsqueeze(0).to(device)
+fallback_real=texts[FALLBACK_INDEX]
+
 raw=SOURCE.read_text(encoding="utf-8").strip()
 paras=[sanitize_vocab(normalize_basic(p)) for p in raw.split("\n\n") if p.strip()]
 # The answer number is already supplied on the separator page. Do not turn a
@@ -201,9 +208,33 @@ for li,(pi,line) in enumerate(entries):
         if attempt>=2 and best[0] <= 12.0:
             break
     score,seq=best
+    style_used=PRIME_INDEX
     if score>22.0:
-        raise RuntimeError(f"Could not get a stable Hand Magic line: {line} score={score}")
-    print(f"{li+1}/{len(entries)} score={score:.2f} {line}",flush=True)
+        # Some text/style combinations collapse deterministically. Try a second
+        # clear Hand Magic writer rather than accepting a scribbled line.
+        fallback_best=None
+        for attempt in range(8):
+            seed=60260929 + li*1301 + attempt*6151
+            torch.manual_seed(seed); np.random.seed(seed)
+            model.EOS=False
+            gen,_=generate_conditional_sequence(
+                model,line,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+                bias=BIAS,prime=True,prime_seq=fallback_t,real_text=fallback_real,
+                is_map=False,batch_size=1
+            )
+            eos_ok=bool(model.EOS)
+            seq2=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
+            sc2=candidate_score(seq2,line,eos_ok)
+            if fallback_best is None or sc2<fallback_best[0]:
+                fallback_best=(sc2,seq2)
+            if attempt>=2 and fallback_best[0] <= 12.0:
+                break
+        if fallback_best and fallback_best[0] < score:
+            score,seq=fallback_best
+            style_used=FALLBACK_INDEX
+    if score>22.0:
+        raise RuntimeError(f"Both clear Hand Magic writers failed: {line} score={score}")
+    print(f"{li+1}/{len(entries)} score={score:.2f} style={style_used} {line}",flush=True)
     generated.append((pi,line,seq_segments(seq)))
 
 page=Image.new("RGB",(PAGE_W,PAGE_H),BG)
