@@ -1,0 +1,53 @@
+Part C.10
+
+The Neo-Keynesian approach developed mainly in the decades following the publication of Keynes’s The General Theory in 1936. Economists such as John Hicks, Alvin Hansen, Paul Samuelson, Franco Modigliani, James Tobin and Robert Solow attempted to formalise Keynesian ideas and combine them with parts of neoclassical economics. This approach became highly influential in post-war macroeconomics.
+
+The basic Neo-Keynesian proposition is that an economy may reach equilibrium below the level of full employment. Aggregate demand can therefore influence real output and employment, particularly in the short run.
+
+In classical theory, flexible wages and prices were expected to restore full employment. Neo-Keynesian economists accepted the Keynesian argument that these adjustments may be slow or incomplete. Therefore, insufficient aggregate demand can produce prolonged unemployment.
+
+One of the most important Neo-Keynesian contributions was the IS-LM model developed from the work of Hicks and Hansen.
+
+The IS curve represents equilibrium in the goods market. It contains combinations of income and the interest rate for which planned saving and planned investment are equal.
+
+The LM curve represents equilibrium in the money market. It contains combinations of income and the interest rate for which the demand for money equals the supply of money.
+
+The intersection of the IS and LM curves determines the equilibrium level of income and the rate of interest. The model was important because it combined the real sector and monetary sector within a single framework.
+
+The approach also gave considerable importance to the Keynesian multiplier. Suppose autonomous investment or government expenditure increases. This creates income for those who receive the initial expenditure. A part of this additional income is then spent on consumption, creating income for others.
+
+If the marginal propensity to consume is c, the simple expenditure multiplier can be written as
+
+k = 1/(1 - c).
+
+Since the marginal propensity to save is s = 1 - c, the multiplier may also be written as
+
+k = 1/s.
+
+An increase in autonomous expenditure therefore creates a larger increase in equilibrium income.
+
+Neo-Keynesian economists also developed the analysis of consumption. Keynes had proposed that consumption rises when income rises, but by less than the rise in income. Later economists provided more detailed explanations of consumption over time. Modigliani’s life-cycle hypothesis, for example, suggested that individuals plan consumption according to expected resources over their lifetime rather than only current income.
+
+Another important area was investment. Investment depends partly on the rate of interest and partly on expectations about future profitability. This means that changes in business expectations can produce significant fluctuations in aggregate demand.
+
+Neo-Keynesian analysis supported the use of fiscal policy. During recession, an increase in government expenditure or a reduction in taxation can raise aggregate demand. This shifts the IS curve and increases equilibrium income, although the magnitude of the effect depends on several conditions.
+
+Monetary policy can also affect aggregate demand. An increase in the money supply can reduce the interest rate and encourage investment. However, Keynesian economists recognised circumstances in which monetary policy may become less effective, particularly when interest rates are already very low and the demand for money becomes highly elastic.
+
+The Neo-Keynesian approach also contributed to the study of inflation and unemployment. The Phillips curve appeared to show an inverse relationship between unemployment and wage inflation. This was initially interpreted as suggesting that governments might face a short-run trade-off between inflation and unemployment.
+
+The experience of stagflation in the 1970s created difficulties for this simple interpretation because high unemployment and high inflation occurred simultaneously. Milton Friedman and Edmund Phelps argued that there was no stable long-run trade-off because expectations adjust.
+
+Another major contribution came through growth theory. Robert Solow developed the neoclassical growth model, which became part of the wider post-war synthesis. The model explains output through capital, labour and technology.
+
+With diminishing returns to capital, continuous capital accumulation alone cannot permanently sustain growth in output per person. Long-run growth in living standards therefore depends significantly on technological progress.
+
+Neo-Keynesian economics had an important influence on government policy. It provided a theoretical justification for stabilisation policy. Governments were no longer expected simply to wait for markets to restore full employment. Fiscal and monetary policies could be used to reduce fluctuations in aggregate demand.
+
+However, the approach faced serious criticism. Monetarists argued that Neo-Keynesian economists underestimated the importance of the money supply. New Classical economists later criticised the absence of strong microeconomic foundations and the limited treatment of expectations.
+
+The Lucas critique argued that relationships observed under one policy regime may change when policy itself changes because rational individuals alter their behaviour.
+
+These criticisms contributed to the development of New Keynesian economics, which attempted to provide clearer microeconomic explanations for wage and price rigidities.
+
+Overall, the Neo-Keynesian approach made major contributions by formalising Keynesian macroeconomics and developing systematic theories of aggregate demand, interest rates, unemployment, inflation, economic growth and stabilisation policy. Although many of its original models were later modified, its influence on modern macroeconomic analysis remains substantial.
