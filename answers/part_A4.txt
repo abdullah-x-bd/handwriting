@@ -1,0 +1,9 @@
+Part A.4
+
+Gossen's First Law is also known as the Law of Diminishing Marginal Utility. It states that as a consumer consumes successive units of the same commodity during a given period, the additional satisfaction obtained from each successive unit tends to decline, other things remaining constant.
+
+Suppose a thirsty person consumes glasses of water. The first glass gives very high satisfaction because the want is intense. The second glass gives additional satisfaction, but less than the first. The marginal utility obtained from further glasses continues to decline. Eventually, marginal utility may become zero when the consumer reaches complete satisfaction. Further consumption may even produce negative marginal utility.
+
+Marginal utility means the addition to total utility resulting from the consumption of one additional unit of a commodity. Total utility usually increases while marginal utility remains positive, but it increases at a diminishing rate. Total utility becomes maximum when marginal utility becomes zero.
+
+Gossen's First Law became an important foundation of marginal utility analysis. It helps explain consumer behaviour and also provides part of the reasoning behind the downward-sloping demand curve.
