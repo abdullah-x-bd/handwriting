@@ -1,59 +1,43 @@
-name: Generate Hand Magic PDF
+name: Hand Magic Transformer Legibility Test
 
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - "output/**"
+    paths:
+      - "transformer_test.py"
+      - ".github/workflows/generate.yml"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  generate:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout this repository
-        uses: actions/checkout@v4
-
-      - name: Checkout real Hand Magic
+      - uses: actions/checkout@v4
+      - name: Checkout Hand Magic
         uses: actions/checkout@v4
         with:
           repository: OmarMusayev/ai-handwriting-generator
           path: handmagic
           lfs: true
-
-      - name: Pull Hand Magic model weights
+      - name: Pull model weights
         working-directory: handmagic
         run: |
           git lfs install
           git lfs pull
           ls -lh weights/
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Install inference dependencies
+      - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install numpy pillow matplotlib reportlab
+          pip install numpy pillow matplotlib
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-
-      - name: Generate with real Hand Magic LSTM
-        run: python generate_handmagic_lstm_pdf.py
-
-      - name: Commit generated PDF and previews
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add output/
-          if git diff --cached --quiet; then
-            echo "No output changes"
-          else
-            git commit -m "Generate Hand Magic handwriting PDF"
-            git push
-          fi
+      - name: Generate comparison
+        run: python transformer_test.py
+      - name: Upload previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: transformer-legibility-test
+          path: transformer_test/*.png
