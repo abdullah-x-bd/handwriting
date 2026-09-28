@@ -1,0 +1,46 @@
+name: Generate Hand Magic Part C PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/part_c.yml"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [part_C9, part_C10, part_C11]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout real Hand Magic
+        uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - name: Pull Hand Magic weights
+        working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install stable binary dependencies
+        run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Generate handwritten answer
+        run: python generate_part_lstm_clean.py ${{ matrix.part }}
+      - name: Upload part
+        uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-${{ matrix.part }}
+          path: generated/${{ matrix.part }}/
+          retention-days: 7
