@@ -1,0 +1,35 @@
+name: Hand Magic A2 Quality Check
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/quality2.yml"
+  workflow_dispatch:
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install numpy pillow matplotlib reportlab
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python generate_part_lstm_clean.py part_A2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: a2-quality-v2
+          path: generated/part_A2/
+          retention-days: 7
