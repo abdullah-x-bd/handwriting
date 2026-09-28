@@ -30,9 +30,9 @@ BG=(255,255,253)
 PRIME_INDEX=3318
 BIAS=20.0
 WRAP_CHARS=42
-TARGET_H=62
-LINE_STEP=78
-PARA_GAP=28
+TARGET_H=70
+LINE_STEP=92
+PARA_GAP=24
 CANDIDATES=3
 
 def normalize_basic(s):
@@ -100,8 +100,10 @@ def draw_full_width(page,segs,y):
     # Cap pathological distortion, but still target >90% of writing width.
     sx=min(sx, sy*2.0)
     rendered_w=w*sx
-    if rendered_w < (RIGHT-LEFT)*0.90:
-        sx=(RIGHT-LEFT)*0.92/w
+    # Normal body lines are balanced to similar lengths and should occupy the
+    # writing width. Only genuinely short lines (equations, etc.) stay natural.
+    if rendered_w < (RIGHT-LEFT)*0.90 and len(segs) >= 8:
+        sx=(RIGHT-LEFT)*0.94/w
     d=ImageDraw.Draw(page)
     for seg in segs:
         if len(seg)<2: continue
@@ -121,18 +123,69 @@ real=texts[PRIME_INDEX]
 
 raw=SOURCE.read_text(encoding="utf-8").strip()
 paras=[sanitize_vocab(normalize_basic(p)) for p in raw.split("\n\n") if p.strip()]
+# The answer number is already supplied on the separator page. Do not turn a
+# tiny heading into a stretched handwriting line.
+if paras and paras[0].lower().startswith("part "):
+    paras=paras[1:]
+
+def balanced_lines(text,target=WRAP_CHARS,max_width=49):
+    words=text.split()
+    if not words:
+        return []
+    total=sum(len(w) for w in words)+max(0,len(words)-1)
+    n=max(1,round(total/target))
+    n=min(n,len(words))
+    ideal=total/n
+
+    # Dynamic programming partition. This avoids tiny final fragments such as
+    # a one-word last line, so every real line can use most of the page width.
+    from functools import lru_cache
+    prefix=[0]
+    for i,w in enumerate(words):
+        prefix.append(prefix[-1]+len(w)+(1 if i else 0))
+    def line_len(i,j):
+        return sum(len(w) for w in words[i:j]) + max(0,j-i-1)
+
+    @lru_cache(None)
+    def dp(i,k):
+        if k==1:
+            L=line_len(i,len(words))
+            if L>max_width+8:
+                return (1e12,[])
+            return ((L-ideal)**2,[(i,len(words))])
+        best=(1e12,[])
+        # leave at least k-1 words
+        for j in range(i+1,len(words)-k+2):
+            L=line_len(i,j)
+            if L>max_width:
+                break
+            rest_cost,rest=dp(j,k-1)
+            cost=(L-ideal)**2+rest_cost
+            if cost<best[0]:
+                best=(cost,[(i,j)]+rest)
+        return best
+
+    _,parts=dp(0,n)
+    if not parts:
+        return textwrap.wrap(text,width=target,break_long_words=False,break_on_hyphens=False)
+    return [" ".join(words[i:j]) for i,j in parts]
+
 entries=[]
 for pi,p in enumerate(paras):
     if "=" in p and len(p)<=65:
         entries.append((pi,p))
     else:
-        for line in textwrap.wrap(p,width=WRAP_CHARS,break_long_words=False,break_on_hyphens=False):
+        for line in balanced_lines(p):
             entries.append((pi,line))
 
 generated=[]
 for li,(pi,line) in enumerate(entries):
     best=None
-    for attempt in range(CANDIDATES):
+    # Generate several complete Hand Magic versions of the same full line.
+    # If all initial attempts look collapsed, keep trying rather than putting a
+    # scribble into the final page.
+    max_attempts=10
+    for attempt in range(max_attempts):
         seed=20260929 + li*1009 + attempt*7919
         torch.manual_seed(seed); np.random.seed(seed)
         model.EOS=False
@@ -145,7 +198,11 @@ for li,(pi,line) in enumerate(entries):
         sc=candidate_score(seq,line,eos_ok)
         if best is None or sc<best[0]:
             best=(sc,seq)
+        if attempt>=2 and best[0] <= 12.0:
+            break
     score,seq=best
+    if score>22.0:
+        raise RuntimeError(f"Could not get a stable Hand Magic line: {line} score={score}")
     print(f"{li+1}/{len(entries)} score={score:.2f} {line}",flush=True)
     generated.append((pi,line,seq_segments(seq)))
 
