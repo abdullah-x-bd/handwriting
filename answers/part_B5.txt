@@ -1,0 +1,33 @@
+Part B.5
+
+Augustin Cournot presented his model of duopoly in 1838. It is one of the earliest mathematical models of oligopoly. A duopoly is a market structure in which only two firms supply a product. Cournot studied how these firms determine their output when each firm recognises the existence of the other but assumes that the rival will keep its output unchanged.
+
+The model makes several important assumptions. There are only two firms in the market. They produce a homogeneous product. Both firms know the market demand curve. Each firm attempts to maximise its own profit. The firms compete by choosing quantities rather than prices. The most important behavioural assumption is that each firm treats the output of the rival as given while deciding its own output.
+
+Suppose the market demand function is P = a - bQ, where Q = q1 + q2. If both firms have the same constant marginal cost c, the profit of firm 1 is
+
+Profit 1 = [a - b(q1 + q2) - c]q1.
+
+Firm 1 chooses q1 while taking q2 as fixed. Profit maximisation gives its reaction function
+
+q1 = (a - c - bq2)/2b.
+
+Similarly, firm 2 has the reaction function
+
+q2 = (a - c - bq1)/2b.
+
+The reaction function shows the profit-maximising quantity of one firm for every possible output chosen by the other firm. Cournot equilibrium occurs where the two reaction functions intersect. At this point, neither firm has an incentive to change its output independently.
+
+For identical firms, equilibrium output is
+
+q1 = q2 = (a - c)/3b.
+
+Therefore, total industry output is
+
+Q = 2(a - c)/3b.
+
+The corresponding price lies below the monopoly price but above the perfectly competitive price. Total output is greater than under monopoly but smaller than under perfect competition.
+
+The importance of Cournot's model lies in its recognition of strategic interdependence. The action of one firm affects the profit of the other. It therefore provided an early foundation for the modern theory of oligopoly and later game theory.
+
+However, the model has limitations. The assumption that each firm treats the rival's output as fixed may be unrealistic in repeated competition. Firms may compete through prices, advertising, product differentiation or collusion. Nevertheless, the Cournot model remains a basic and useful explanation of quantity competition between oligopolistic firms.
