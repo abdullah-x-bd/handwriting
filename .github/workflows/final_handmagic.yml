@@ -1,0 +1,96 @@
+name: Build Full Hand Magic Answer PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/final_handmagic.yml"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        part: [part_A1, part_A2, part_A3, part_A4, part_B5, part_B6, part_B7, part_B8]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout real Hand Magic
+        uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - name: Pull Hand Magic weights
+        working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install inference and PDF dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pillow matplotlib reportlab
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Generate handwritten answer
+        run: python generate_part_lstm_clean.py ${{ matrix.part }}
+      - name: Upload part PDF and page previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-${{ matrix.part }}
+          path: generated/${{ matrix.part }}/
+          retention-days: 7
+
+  merge:
+    needs: generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download all handwritten parts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: handmagic-part_*
+          path: collected
+          merge-multiple: true
+      - name: Merge in answer order
+        run: |
+          pip install pypdf
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader, PdfWriter
+
+          order=["part_A1","part_A2","part_A3","part_A4","part_B5","part_B6","part_B7","part_B8"]
+          root=Path("collected")
+          out=Path("final_bundle")
+          out.mkdir(exist_ok=True)
+
+          writer=PdfWriter()
+          for part in order:
+              p=root/f"{part}.pdf"
+              if not p.exists():
+                  raise FileNotFoundError(p)
+              r=PdfReader(str(p))
+              for page in r.pages:
+                  writer.add_page(page)
+              (out/f"{part}.pdf").write_bytes(p.read_bytes())
+
+          final=out/"BA_Economics_Handwritten_Answers_HandMagic.pdf"
+          with final.open("wb") as f:
+              writer.write(f)
+          print(final)
+          PY
+      - name: Upload final PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-final-pdfs
+          path: final_bundle/
+          retention-days: 7
