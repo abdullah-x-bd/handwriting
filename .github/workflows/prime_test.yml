@@ -1,0 +1,35 @@
+name: Hand Magic Primed Style Test
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/prime_test.yml"
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install numpy pillow matplotlib
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python prime_test.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: handmagic-prime-test
+          path: prime_test/*.png
+          retention-days: 7
