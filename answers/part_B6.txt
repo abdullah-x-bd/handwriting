@@ -1,0 +1,23 @@
+Part B.6
+
+Alfred Marshall developed a system of equilibrium analysis that became one of the foundations of neoclassical microeconomics. His approach is mainly described as partial equilibrium analysis because Marshall generally examined the determination of price and output in a particular market while assuming that other relevant factors remained constant.
+
+Marshall explained equilibrium through the interaction of demand and supply. Demand represents the quantities consumers are willing to purchase at different prices. Other things remaining constant, quantity demanded generally increases when price falls and decreases when price rises. This gives the demand curve its usual downward slope.
+
+Supply represents the quantities producers are willing to offer at different prices. In general, a higher price encourages producers to supply a larger quantity, so the supply curve usually slopes upward.
+
+Market equilibrium occurs where quantity demanded equals quantity supplied. The price at which this happens is the equilibrium price, while the quantity bought and sold is the equilibrium quantity.
+
+Suppose the market price is above the equilibrium price. Producers then offer more than consumers wish to purchase, creating excess supply. Competition among sellers tends to push the price downward. If the price is below equilibrium, quantity demanded exceeds quantity supplied. The resulting excess demand puts upward pressure on price. Therefore, the market tends to move towards the equilibrium point.
+
+An important feature of Marshall's system is his treatment of time. He distinguished between the market period, short period and long period. In the market period, supply may be fixed, so demand has a strong influence on price. In the short period, firms can vary some factors of production but cannot fully change plant size. In the long period, all factors become variable and firms may enter or leave the industry.
+
+Marshall therefore rejected the idea that either demand or supply alone determines value. He compared them with the two blades of a pair of scissors. Both are necessary for determining price, although their relative importance may change according to the time period.
+
+His analysis also relied heavily on the ceteris paribus assumption. By holding other influences constant, Marshall was able to isolate the relationship between specific variables. He also developed important concepts such as price elasticity of demand, consumer surplus and different degrees of responsiveness of supply.
+
+Marshall's partial equilibrium method has the advantage of simplicity. It allows detailed study of an individual market without requiring simultaneous analysis of the entire economy.
+
+Its limitation is that markets are not completely independent. A change in one market may affect demand, costs and prices in several other markets. General equilibrium theory later attempted to deal with these interconnections more directly.
+
+Even with this limitation, Marshall's system remains highly important because it provided a clear framework for understanding the determination of price and output through demand, supply and market adjustment.
