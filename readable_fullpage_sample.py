@@ -30,9 +30,9 @@ BG=(255,255,253)
 PRIME_INDEX=2808
 FALLBACK_INDEX=1021
 BIAS=24.0
-WRAP_CHARS=42
-TARGET_H=70
-LINE_STEP=92
+WRAP_CHARS=55
+TARGET_H=90
+LINE_STEP=120
 PARA_GAP=24
 CANDIDATES=3
 
@@ -91,25 +91,22 @@ def candidate_score(seq,text,eos_ok):
     if aspect > 45.0: score += 15.0
     return score
 
-def draw_full_width(page,segs,y):
+def render_geometry(segs):
     minx,miny,maxx,maxy=bbox(segs)
-    w=max(1,maxx-minx); h=max(1,maxy-miny)
-    sy=TARGET_H/h
-    # Use independent x scaling deliberately: retain a normal, readable letter
-    # height while using the full writing width of the page.
-    sx=(RIGHT-LEFT)/w
-    # Cap pathological distortion, but still target >90% of writing width.
-    sx=min(sx, sy*2.0)
-    rendered_w=w*sx
-    # Normal body lines are balanced to similar lengths and should occupy the
-    # writing width. Only genuinely short lines (equations, etc.) stay natural.
-    if rendered_w < (RIGHT-LEFT)*0.90 and len(segs) >= 8:
-        sx=(RIGHT-LEFT)*0.94/w
+    w=max(1.0,maxx-minx); h=max(1.0,maxy-miny)
+    # Preserve Hand Magic's aspect ratio. The line itself is balanced to be
+    # long enough, so one uniform scale can fill the writing width naturally.
+    scale=((RIGHT-LEFT)*0.95)/w
+    return minx,miny,maxx,maxy,scale,w*scale,h*scale
+
+def draw_full_width(page,segs,y):
+    minx,miny,maxx,maxy,scale,rw,rh=render_geometry(segs)
     d=ImageDraw.Draw(page)
     for seg in segs:
         if len(seg)<2: continue
-        pts=[(LEFT+(x-minx)*sx, y+(maxy-y0)*sy) for x,y0 in seg]
+        pts=[(LEFT+(x-minx)*scale, y+(maxy-y0)*scale) for x,y0 in seg]
         d.line(pts,fill=INK,width=3,joint="curve")
+    return rh
 
 device="cpu"
 startup_singletons(str(HM/"data")+"/",str(HM/"weights"/"lstm.pt"),device)
@@ -135,7 +132,7 @@ paras=[sanitize_vocab(normalize_basic(p)) for p in raw.split("\n\n") if p.strip(
 if paras and paras[0].lower().startswith("part "):
     paras=paras[1:]
 
-def balanced_lines(text,target=WRAP_CHARS,max_width=49):
+def balanced_lines(text,target=WRAP_CHARS,max_width=62):
     words=text.split()
     if not words:
         return []
@@ -237,15 +234,30 @@ for li,(pi,line) in enumerate(entries):
     print(f"{li+1}/{len(entries)} score={score:.2f} style={style_used} {line}",flush=True)
     generated.append((pi,line,seq_segments(seq)))
 
+# Compute true rendered heights and distribute the remaining vertical space
+# between lines. This keeps the page full without deforming the handwriting.
+geoms=[]
+for pi,line,segs in generated:
+    g=render_geometry(segs)
+    geoms.append((pi,line,segs,g[-1]))
+
+para_breaks=sum(1 for i in range(1,len(geoms)) if geoms[i][0]!=geoms[i-1][0])
+base=sum(max(72.0,rh)+18.0 for _,_,_,rh in geoms) + para_breaks*PARA_GAP
+available=BOTTOM-TOP
+extra=max(0.0,available-base)
+gap_extra=(extra/max(1,len(geoms)-1)) if len(geoms)>1 else 0.0
+gap_extra=min(gap_extra,45.0)
+
 page=Image.new("RGB",(PAGE_W,PAGE_H),BG)
 y=TOP
 prev=None
-for pi,line,segs in generated:
-    if prev is not None and pi!=prev: y+=PARA_GAP
-    if y+LINE_STEP>BOTTOM:
+for pi,line,segs,rh in geoms:
+    if prev is not None and pi!=prev:
+        y+=PARA_GAP
+    if y+rh>BOTTOM:
         raise RuntimeError(f"Sample overflowed one page at y={y}")
-    draw_full_width(page,segs,y)
-    y+=LINE_STEP
+    used_h=draw_full_width(page,segs,y)
+    y+=max(72.0,used_h)+18.0+gap_extra
     prev=pi
 
 page=page.filter(ImageFilter.GaussianBlur(0.02))
