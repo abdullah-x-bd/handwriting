@@ -51,7 +51,7 @@ def aligned(token,seed):
         inp=z; out.append(z); n+=1
     seq=torch.cat(out,dim=1).detach().cpu().numpy()
     seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,seq)[0]
-    phi=torch.cat(model._phi,dim=1).cpu().numpy()[0].T
+    phi=torch.cat(model._phi,dim=1).detach().cpu().numpy()[0].T
     start=len(prefix); end=start+len(token)-1
     peaks=[int(np.argmax(phi[i])) for i in range(start,end+1)]
     pad=max(10,15-len(token))
