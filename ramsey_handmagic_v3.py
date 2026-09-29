@@ -167,7 +167,7 @@ def raw_for(text,short=False):
     # Generate the symbol three times as separate words and keep the middle
     # handwritten word. This remains genuine Hand Magic output.
     if len(text)<=2 and text.strip():
-        prompt=f"{text} {text} {text}"
+        prompt=f"hello {text} world"
         full=generate_raw(prompt,len(raw_cache)+1,short=False)
         mid=extract_middle_word(full)
         if mid:
