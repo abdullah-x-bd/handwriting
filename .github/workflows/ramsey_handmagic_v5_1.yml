@@ -1,0 +1,44 @@
+name: Ramsey Hand Magic v5.1 Strict OCR
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ramsey_handmagic_v5_1.yml"
+  workflow_dispatch:
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install "pytesseract>=0.3.13"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Validate renderer
+        run: python -m py_compile ramsey_handmagic_v5_1.py
+      - name: Render v5.1
+        run: python ramsey_handmagic_v5_1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ramsey-hand-magic-v5-1
+          path: ramsey_handmagic_v5_1_output/
+          retention-days: 7
