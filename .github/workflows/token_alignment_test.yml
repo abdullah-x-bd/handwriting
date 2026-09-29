@@ -1,4 +1,4 @@
-name: Hand Magic Token Alignment Test
+name: Hand Magic Token Alignment Test v2
 on:
   push:
     branches: [main]
