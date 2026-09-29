@@ -1,0 +1,126 @@
+Part (a) Household optimization
+
+The household budget constraint before imposing aggregate equilibrium is
+
+[[EQ household_budget]]
+
+The current-value Hamiltonian is
+
+[[EQ utility]]
+[[EQ hamiltonian]]
+
+The first-order condition for consumption and the costate equation give
+
+[[EQ foc]]
+[[EQ costate_ratio]]
+
+Since lambda equals c raised to minus theta, differentiating gives lambda dot over lambda equals minus theta times c dot over c. Therefore
+
+[[EQ euler]]
+
+Using r equals alpha A k raised to alpha minus one gives exactly the required Euler equation. The tax appears because one more unit of saving earns only the after-tax marginal return. The lump-sum transfer raises income but does not restore the marginal reward from an additional unit of saving.
+
+After imposing T equals tau r k and competitive factor payments, taxes and transfers cancel from aggregate resources. Hence
+
+[[EQ resource]]
+
+Thus the tax disappears from the resource constraint but remains in the Euler equation because it changes the intertemporal price faced by the household.
+
+Part (b) Steady state
+
+At a positive steady state, c dot equals zero, so
+
+[[EQ ss_euler]]
+
+Solving for capital gives
+
+[[EQ kstar]]
+
+The capital equation requires k dot equals zero. Hence
+
+[[EQ cstar]]
+
+Differentiating k star with respect to tau gives
+
+[[EQ dkdtau]]
+
+Therefore the derivative is negative. A higher capital-income tax lowers the after-tax return to saving. Households accumulate less capital until the higher marginal product of the now scarcer capital restores the steady-state Euler condition.
+
+Part (c) Phase diagram
+
+The k dot equals zero locus follows from the resource equation:
+
+[[EQ kdot_locus]]
+
+Its slope is
+
+[[EQ kdot_slope]]
+
+At low k the marginal product of capital is high, so this slope is positive. As k rises, diminishing marginal productivity lowers the slope. Eventually alpha A k raised to alpha minus one falls below delta, so the curve bends downward.
+
+For positive consumption, the c dot equals zero condition is
+
+[[EQ cdot_locus]]
+
+This equation determines one value of k, namely k star, and does not depend on c. Therefore the c dot equals zero locus is vertical. To its left c rises, and to its right c falls. Above the k dot equals zero curve capital falls, while below it capital rises.
+
+[[DIAGRAM phase]]
+
+The steady state is the intersection of the two nullclines. Only the stable saddle path converges to it.
+
+Part (d) Local stability
+
+Write the dynamic system as k dot equals F of k and c, and c dot equals G of k and c. At the steady state define
+
+[[EQ adef]]
+[[EQ bdef]]
+
+The Jacobian is
+
+[[EQ jacobian]]
+
+Because alpha minus one is negative, b is negative. Therefore
+
+[[EQ determinant]]
+
+The determinant is the product of the two eigenvalues. A negative determinant means that one eigenvalue is negative and the other is positive:
+
+[[EQ eigenvalues]]
+
+Hence the steady state is a saddle point. There is exactly one stable direction, which generates the saddle path.
+
+Capital is predetermined because the physical stock inherited at time zero cannot jump. Consumption is a control variable, so it can jump immediately to the unique value that places the economy on the stable saddle path.
+
+Part (e) Unexpected permanent tax increase
+
+Initially the economy is at the steady state for tau zero. At time zero the government permanently raises the tax to tau one, where tau one is greater than tau zero.
+
+Because the steady-state capital stock falls with the tax,
+
+[[EQ new_old_k]]
+
+Capital cannot jump at time zero:
+
+[[EQ k_jump]]
+
+Consumption can jump. The new c dot equals zero line moves left from k zero star to k one star. The k dot equals zero curve does not move because the aggregate resource equation contains no tax rate.
+
+At the old capital stock, the new saddle path lies above the k dot equals zero curve. Consumption therefore jumps upward:
+
+[[EQ c_jump]]
+
+The upward jump reduces saving. After the jump the economy is to the right of the new c dot equals zero line and above the k dot equals zero curve. Therefore both capital and consumption fall during the transition.
+
+[[DIAGRAM tax]]
+
+In the new steady state,
+
+[[EQ longrun]]
+
+Output falls because output is increasing in capital. The pre-tax marginal product rises because capital becomes scarcer. The steady-state Euler condition can also be written
+
+[[EQ mpkstar]]
+
+A higher tax therefore requires a higher pre-tax marginal product and hence a lower steady-state capital stock.
+
+Returning every rupee of tax revenue does not make the tax neutral. The transfer restores income, but it does not restore the marginal return to an additional unit of saving. The tax changes the intertemporal price faced by the household, so it changes saving incentives and therefore the long-run allocation.
