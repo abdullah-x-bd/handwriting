@@ -127,7 +127,7 @@ def generate_raw(text,key,short=False):
             seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
             q=quality(seq,text,eos,short=short)
             if best is None or q<best[0]: best=(q,seq,style_index)
-            if attempt>=2 and q<=12: break
+            if q<=12: break
         if best and best[0]<=22: break
     if best is None or best[0]>26:
         raise RuntimeError(f"Hand Magic rejected '{text}' score={None if best is None else best[0]}")
