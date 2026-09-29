@@ -136,28 +136,26 @@ def generate_raw(text,key,short=False):
 
 raw_cache={}
 
-def extract_middle_word(segs):
+def extract_middle_word(segs, token_len=1):
     if not segs:
         return None
+    minx,miny,maxx,maxy=bbox(segs)
+    width=max(1.0,maxx-minx)
+    mid=(minx+maxx)/2.0
     items=[]
     for s in segs:
         b=bbox([s])
-        items.append((b[0],b[2],s))
-    items.sort(key=lambda z:z[0])
-    if len(items)<3:
-        return None
-    gaps=[]
-    for i in range(len(items)-1):
-        gaps.append((items[i+1][0]-items[i][1],i))
-    cuts=sorted([i for g,i in sorted(gaps,reverse=True)[:2]])
-    if len(cuts)!=2:
-        return None
-    g1=[z[2] for z in items[:cuts[0]+1]]
-    g2=[z[2] for z in items[cuts[0]+1:cuts[1]+1]]
-    g3=[z[2] for z in items[cuts[1]+1:]]
-    if not g1 or not g2 or not g3:
-        return None
-    return g2
+        center=(b[0]+b[2])/2.0
+        items.append((abs(center-mid),center,s))
+    # The prompt is symmetric: "hello TOKEN hello". The target word sits at
+    # the geometric centre. Keep only central Hand Magic strokes rather than
+    # guessing word boundaries from pen lifts inside the surrounding words.
+    band=width*(0.09 if token_len<=1 else 0.13)
+    chosen=[s for dist,center,s in items if dist<=band]
+    if not chosen:
+        items.sort(key=lambda z:z[0])
+        chosen=[z[2] for z in items[:max(1,min(3,token_len+1))]]
+    return chosen
 
 def raw_for(text,short=False):
     k=(text,short)
@@ -167,9 +165,9 @@ def raw_for(text,short=False):
     # Generate the symbol three times as separate words and keep the middle
     # handwritten word. This remains genuine Hand Magic output.
     if len(text)<=2 and text.strip():
-        prompt=f"hello {text} world"
+        prompt=f"hello {text} hello"
         full=generate_raw(prompt,len(raw_cache)+1,short=False)
-        mid=extract_middle_word(full)
+        mid=extract_middle_word(full,len(text))
         if mid:
             raw_cache[k]=mid
             return mid
