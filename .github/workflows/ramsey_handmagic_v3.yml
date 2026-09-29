@@ -1,4 +1,4 @@
-name: Ramsey Hand Magic Only v4.1
+name: Ramsey Hand Magic Only v4.2
 on:
   push:
     branches: [main]
