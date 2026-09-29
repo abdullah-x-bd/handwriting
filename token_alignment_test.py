@@ -49,7 +49,7 @@ def aligned(token,seed):
         hidden=(torch.cat([z[0] for z in state],dim=0),torch.cat([z[1] for z in state],dim=0))
         z=sample_from_out_dist(yh.squeeze(),BIAS)
         inp=z; out.append(z); n+=1
-    seq=torch.cat(out,dim=1).cpu().numpy()
+    seq=torch.cat(out,dim=1).detach().cpu().numpy()
     seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,seq)[0]
     phi=torch.cat(model._phi,dim=1).cpu().numpy()[0].T
     start=len(prefix); end=start+len(token)-1
