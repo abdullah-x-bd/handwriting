@@ -263,7 +263,7 @@ for idx, part in enumerate(parts):
     for p in [q.strip() for q in block.split("\n\n") if q.strip()]:
         para_id += 1
         if p.startswith("EQ:"):
-            lines = [p[3:].strip()]
+            lines = [ln[3:].strip() for ln in p.splitlines() if ln.strip().startswith("EQ:")]
         else:
             cleaned = sanitize_vocab(normalize_basic(p))
             lines = balanced_lines(cleaned)
