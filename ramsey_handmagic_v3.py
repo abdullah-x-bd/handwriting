@@ -135,10 +135,45 @@ def generate_raw(text,key,short=False):
     return seq_segments(best[1])
 
 raw_cache={}
+
+def extract_middle_word(segs):
+    if not segs:
+        return None
+    items=[]
+    for s in segs:
+        b=bbox([s])
+        items.append((b[0],b[2],s))
+    items.sort(key=lambda z:z[0])
+    if len(items)<3:
+        return None
+    gaps=[]
+    for i in range(len(items)-1):
+        gaps.append((items[i+1][0]-items[i][1],i))
+    cuts=sorted([i for g,i in sorted(gaps,reverse=True)[:2]])
+    if len(cuts)!=2:
+        return None
+    g1=[z[2] for z in items[:cuts[0]+1]]
+    g2=[z[2] for z in items[cuts[0]+1:cuts[1]+1]]
+    g3=[z[2] for z in items[cuts[1]+1:]]
+    if not g1 or not g2 or not g3:
+        return None
+    return g2
+
 def raw_for(text,short=False):
     k=(text,short)
-    if k not in raw_cache:
-        raw_cache[k]=generate_raw(text,len(raw_cache)+1,short=short)
+    if k in raw_cache:
+        return raw_cache[k]
+    # Hand Magic often collapses one-character prompts to two sequence steps.
+    # Generate the symbol three times as separate words and keep the middle
+    # handwritten word. This remains genuine Hand Magic output.
+    if len(text)<=2 and text.strip():
+        prompt=f"{text} {text} {text}"
+        full=generate_raw(prompt,len(raw_cache)+1,short=False)
+        mid=extract_middle_word(full)
+        if mid:
+            raw_cache[k]=mid
+            return mid
+    raw_cache[k]=generate_raw(text,len(raw_cache)+1,short=short)
     return raw_cache[k]
 
 def scaled_metrics(segs,target_h):
