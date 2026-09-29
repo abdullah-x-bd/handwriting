@@ -1,0 +1,81 @@
+{
+  "preset_name": "handmagic_readable_fullpage_default",
+  "status": "preferred_default_for_future_use",
+  "reference_output": "HandMagic_A1_Legibility_Fixed",
+  "implementation": "readable_fullpage_sample.py",
+  "model": {
+    "upstream_repo": "OmarMusayev/ai-handwriting-generator",
+    "model_path": "weights/lstm.pt",
+    "generation_function": "generate_conditional_sequence",
+    "prime": true,
+    "device_reference_run": "cpu"
+  },
+  "writer": {
+    "primary_style_index": 2808,
+    "fallback_style_index": 1021,
+    "bias": 24
+  },
+  "page": {
+    "width": 2480,
+    "height": 3508,
+    "left": 150,
+    "right": 2330,
+    "top": 145,
+    "bottom": 3430,
+    "ink_rgb": [
+      22,
+      55,
+      123
+    ],
+    "background_rgb": [
+      255,
+      255,
+      253
+    ],
+    "stroke_width": 3,
+    "gaussian_blur": 0.02
+  },
+  "line_layout": {
+    "wrap_chars_target": 55,
+    "balanced_line_max_width": 62,
+    "preserve_aspect_ratio": true,
+    "target_width_fraction": 0.95,
+    "paragraph_gap": 24,
+    "minimum_line_height_contribution": 72,
+    "base_gap_after_line": 18,
+    "extra_gap_cap": 32
+  },
+  "generation_qc": {
+    "primary_max_attempts": 10,
+    "primary_early_accept_score": 12,
+    "fallback_trigger_score": 22,
+    "fallback_max_attempts": 8,
+    "fallback_early_accept_score": 12,
+    "final_reject_score": 22,
+    "primary_seed_formula": "20260929 + line_index*1009 + attempt*7919",
+    "fallback_seed_formula": "60260929 + line_index*1301 + attempt*6151",
+    "score": {
+      "eos_failure_penalty": 100,
+      "target_sequence_steps_per_character": 16,
+      "sequence_ratio_multiplier": 0.7,
+      "minimum_pen_lift_to_word_ratio": 1.1,
+      "low_pen_lift_multiplier": 30,
+      "aspect_ratio_below_3_penalty": 25,
+      "aspect_ratio_above_45_penalty": 15
+    }
+  },
+  "current_legacy_constants_not_used_by_final_geometry": {
+    "target_h": 90,
+    "line_step": 120,
+    "candidates": 3
+  },
+  "critical_rules": [
+    "Use real Hand Magic generation only.",
+    "Do not horizontally stretch handwriting.",
+    "Preserve x/y aspect ratio with one uniform scale.",
+    "Use balanced longer lines to fill width naturally.",
+    "Reject collapsed or illegible generations.",
+    "Use fallback writer only when the primary writer fails a line.",
+    "Distribute vertical spacing dynamically to fill the page."
+  ]
+}
