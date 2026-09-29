@@ -1,4 +1,4 @@
-name: Ramsey Growth Handwritten v1
+name: Ramsey Growth Handwritten v2
 on:
   push:
     branches: [main]
