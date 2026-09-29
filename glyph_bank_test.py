@@ -52,17 +52,52 @@ groups=[];start=0
 for cut in cuts:
     groups.append([z[2] for z in items[start:cut+1]]);start=cut+1
 groups.append([z[2] for z in items[start:]])
-print("segments",len(items),"groups",len(groups),"needed",len(TOKENS))
-if len(groups)!=len(TOKENS):raise RuntimeError("glyph bank segmentation failed")
+# Rasterize the complete Hand Magic line first, then find word gaps from
+# completely blank vertical columns. Triple input spaces create much wider
+# blank bands than internal letter gaps.
+allbb=bb(ss)
+x1,y1,x2,y2=allbb
+nw=max(1.0,x2-x1);nh=max(1.0,y2-y1)
+sy=130.0/nh;sx=sy*1.45
+rw=int(nw*sx)+80;rh=240
+full=Image.new("L",(rw,rh),255);fd=ImageDraw.Draw(full)
+for sg in ss:
+    pts=[(30+(x-x1)*sx,45+(y2-y)*sy) for x,y in sg]
+    if len(pts)>1:fd.line(pts,fill=0,width=5,joint="curve")
+arr=np.asarray(full)
+ink=(arr<245).any(axis=0)
+runs=[];st=None
+for xi,v in enumerate(ink):
+    if not v and st is None:st=xi
+    if v and st is not None:
+        if xi-st>=3:runs.append((xi-st,st,xi-1))
+        st=None
+if st is not None:runs.append((len(ink)-st,st,len(ink)-1))
+# Discard outer margins, then use the widest N-1 blank bands.
+runs=[r for r in runs if r[1]>35 and r[2]<rw-35]
+chosen=sorted(sorted(runs,reverse=True)[:len(TOKENS)-1],key=lambda z:z[1])
+bounds=[20]+[int((r[1]+r[2])/2) for r in chosen]+[rw-20]
+print("blank runs",len(runs),"chosen",len(chosen),"bounds",len(bounds)-1)
+if len(bounds)-1!=len(TOKENS):raise RuntimeError("raster glyph bank segmentation failed")
+groups_img=[]
+for i in range(len(TOKENS)):
+    crop=full.crop((bounds[i],0,bounds[i+1],rh))
+    ca=np.asarray(crop)
+    ys,xs0=np.where(ca<245)
+    if len(xs0):
+        crop=crop.crop((max(0,xs0.min()-6),max(0,ys.min()-6),min(crop.width,xs0.max()+7),min(crop.height,ys.max()+7)))
+    groups_img.append(crop)
+full.save(OUT/"full_line.png")
 W,H=1800,2600;cols=4;cw=W//cols;ch=400
 page=Image.new("RGB",(W,H),(255,255,253));d=ImageDraw.Draw(page)
-for i,(tok,g) in enumerate(zip(TOKENS,groups)):
-    x1,y1,x2,y2=bb(g);w=max(1,x2-x1);h=max(1,y2-y1);sy=125/h;sx=sy
-    if w*sx>cw-60:sx=(cw-60)/w
+for i,(tok,gim) in enumerate(zip(TOKENS,groups_img)):
     cx=(i%cols)*cw;cy=(i//cols)*ch
     d.text((cx+15,cy+10),tok,fill=(0,0,0))
-    for s in g:
-        pts=[(cx+25+(x-x1)*sx,cy+90+(y2-y)*sy) for x,y in s]
-        if len(pts)>1:d.line(pts,fill=(22,55,123),width=5,joint="curve")
-page.save(OUT/"glyph_bank.png",dpi=(200,200))
-np.save(OUT/"glyph_bank.npy",np.array(groups,dtype=object),allow_pickle=True)
+    rgba=Image.new("RGBA",gim.size,(22,55,123,0))
+    mask=Image.fromarray(255-np.asarray(gim))
+    rgba.putalpha(mask)
+    scale=min(125/max(1,gim.height),(cw-60)/max(1,gim.width))
+    rr=rgba.resize((max(1,int(rgba.width*scale)),max(1,int(rgba.height*scale))),Image.Resampling.LANCZOS)
+    page.paste(rr,(cx+25,cy+90),rr)
+page.save(OUT/"glyph_bank_raster.png",dpi=(200,200))
+
