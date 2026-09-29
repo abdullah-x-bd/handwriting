@@ -1,4 +1,4 @@
-name: Hand Magic Glyph Bank Test
+name: Hand Magic Glyph Bank Raster Test v2
 on:
   push:
     branches: [main]
