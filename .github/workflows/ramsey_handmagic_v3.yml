@@ -1,4 +1,4 @@
-name: Ramsey Hand Magic Only v3
+name: Ramsey Hand Magic Only v3.1
 on:
   push:
     branches: [main]
@@ -25,7 +25,7 @@ jobs:
           python-version: "3.12"
       - run: |
           python -m pip install --upgrade "pip<26"
-          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "reportlab>=4"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
           python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: python ramsey_handmagic_v3.py
       - uses: actions/upload-artifact@v4
