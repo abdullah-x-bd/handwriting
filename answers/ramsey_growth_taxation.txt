@@ -1,0 +1,111 @@
+Part a. Household optimization and the Euler equation.
+
+The household budget constraint is dk/dt = (1-tau) r k + w + T - c - delta k. The current-value Hamiltonian is H = u(c) + lambda[(1-tau) r k + w + T - c - delta k].
+
+The first-order condition for consumption gives lambda = c power (-theta). The current-value costate equation is d lambda/dt = lambda[rho + delta - (1-tau)r].
+
+Therefore d lambda/dt over lambda = -theta times (dc/dt over c). Hence the Euler equation is
+
+EQ: dc/dt over c = 1/theta times
+EQ: [(1-tau) alpha A k power (alpha-1) - delta - rho].
+
+The tax remains in the Euler equation because an extra unit of saving earns only the after-tax return (1-tau)r. The transfer T is lump sum and does not restore the marginal return to an extra unit of saving.
+
+In aggregate T = tau r k, so taxes and transfers cancel in resources and dk/dt = A k power alpha - c - delta k. Thus the tax leaves the resource constraint unchanged but distorts the saving decision.
+
+Part b. The non-zero steady state and the effect of the tax.
+
+At a steady state dc/dt = 0. For positive consumption this requires
+
+EQ: (1-tau) alpha A k star power (alpha-1) = rho + delta.
+
+Rearranging gives
+
+EQ: k star = [(1-tau) alpha A/(rho+delta)]
+EQ: power [1/(1-alpha)].
+
+The capital equation also requires dk/dt = 0. Hence
+
+EQ: c star = A k star power alpha - delta k star.
+
+Taking logs of the expression for k star and differentiating with respect to tau gives
+
+EQ: d k star/d tau = - k star/[(1-alpha)(1-tau)].
+
+Since 0<alpha<1 and tau<1, this derivative is negative. A higher capital-income tax reduces the after-tax return to saving, so households accumulate less capital. With diminishing returns, capital falls until the pre-tax marginal product rises enough to satisfy the steady-state Euler condition again.
+
+Part c. Phase diagram.
+
+The k dot equals zero locus follows from dk/dt = 0:
+
+EQ: c = A k power alpha - delta k.
+
+Its slope is
+
+EQ: dc/dk = alpha A k power (alpha-1) - delta.
+
+At low k the marginal product of capital is high, so the slope is positive. As k rises, diminishing marginal productivity lowers alpha A k power (alpha-1). Eventually it falls below delta, so the locus bends downward and is hump shaped.
+
+For positive c, the c dot equals zero condition is
+
+EQ: (1-tau) alpha A k power (alpha-1) = rho + delta.
+
+It determines one value k = k star and is therefore a vertical line. To its left, k is smaller and the marginal product is higher, so dc/dt>0. To its right dc/dt<0.
+
+Above the k dot equals zero curve, consumption exceeds net output and dk/dt<0. Below it dk/dt>0. The unique stable arm approaching the intersection is the saddle path.
+
+===PHASE_DIAGRAM===
+
+Part d. Local stability.
+
+Write F(k,c) = A k power alpha - c - delta k and G(k,c) = (c/theta)[(1-tau) alpha A k power (alpha-1) - delta - rho].
+
+The Jacobian at the steady state is
+
+EQ: J = ( a , -1 ; b , 0 ),
+
+where
+
+EQ: a = alpha A k star power (alpha-1) - delta,
+EQ: b = (c star/theta)(1-tau) alpha A (alpha-1)
+EQ: times k star power (alpha-2).
+
+The lower-right element is zero because the bracket in the Euler equation is zero at the steady state. Since alpha-1<0, we have b<0. Therefore
+
+EQ: det J = b < 0.
+
+The determinant is the product of the two eigenvalues. A negative determinant means one eigenvalue is negative and the other is positive. Hence the steady state is a saddle point with one stable direction and one unstable direction.
+
+Capital k is predetermined because the physical capital stock cannot jump at an instant. Consumption c is a control variable and can jump immediately. It must jump to the unique value that places the economy on the stable saddle path.
+
+Part e. Unexpected permanent rise in the capital-income tax.
+
+Initially the economy is at the steady state for tau0. At time zero the tax rises permanently to tau1>tau0. Since k star falls when tau rises, the new steady state has k1 star<k0 star.
+
+Capital cannot jump, so
+
+EQ: k(0 plus) = k(0 minus) = k0 star.
+
+Consumption can jump. The new c dot equals zero line moves left from k0 star to k1 star, while the k dot equals zero curve does not move because the aggregate resource equation contains no tau.
+
+At the old capital stock, the new after-tax return is too low. The new stable saddle path lies above the k dot equals zero curve at k0 star. Therefore consumption jumps upward:
+
+EQ: c(0 plus) > c(0 minus) = c0 star.
+
+This jump reduces saving and puts the economy exactly on the new saddle path. After the jump the economy is to the right of the new c dot equals zero line and above the k dot equals zero curve. Thus dk/dt<0 and dc/dt<0 during the transition.
+
+===TAX_DIAGRAM===
+
+Capital and consumption then move down along the new saddle path toward the new steady state. In the long run k1 star<k0 star and c1 star<c0 star.
+
+Output also falls because y = A k power alpha is increasing in k. The pre-tax marginal product of capital rises because capital is scarcer.
+
+The steady-state Euler condition can be written
+
+EQ: MPK star = (rho+delta)/(1-tau).
+
+Thus a higher tax requires a higher pre-tax marginal product and therefore a lower capital stock.
+
+The final point is that returning every rupee of tax revenue does not make the tax neutral. The transfer restores income to the representative household, but it does not restore the marginal reward from an additional unit of saving.
+
+The household compares current consumption with the after-tax return (1-tau)r. Therefore the tax changes the intertemporal price, changes saving incentives, and changes the long-run levels of capital, consumption and output even though aggregate tax revenue is fully rebated.
