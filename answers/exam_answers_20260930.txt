@@ -1,0 +1,242 @@
+A.1
+
+The commercial bills market is a part of the money market where short-term bills arising from trade transactions are bought, sold, discounted and rediscounted. It mainly helps firms obtain short-term finance against goods sold on credit.
+
+When a seller sells goods to a buyer on credit, the seller may draw a bill of exchange on the buyer. The buyer accepts the bill and promises to make payment on a fixed future date. If the seller needs money before that date, the bill can be taken to a bank for discounting. The bank pays the seller before maturity after deducting a small amount called discount.
+
+The bank may hold the bill until maturity or rediscount it with another financial institution. Since commercial bills arise from actual trade transactions, they are considered relatively secure short-term instruments.
+
+The commercial bills market provides liquidity to businesses, reduces the need to wait for credit payments and helps banks use their short-term funds efficiently. It therefore supports both trade and the smooth functioning of the money market.
+
+
+---
+
+A.2
+
+There are four major instruments commonly used in the credit market.
+
+A simple loan is one in which a borrower receives a certain amount of money and repays the amount along with interest on a specified future date. For example, if a person borrows ₹10,000 for one year, the principal and interest are normally paid at the end of the year.
+
+A fixed-payment loan is repaid through a series of regular payments over a fixed period. Each payment normally includes a part of the principal and a part of the interest. Housing loans, vehicle loans and many personal loans are examples.
+
+A coupon bond is a debt instrument under which the borrower makes regular interest payments to the holder of the bond. These regular payments are called coupon payments. At maturity, the face value of the bond is also repaid.
+
+A discount bond is sold at a price below its face value. It generally does not make regular interest payments. The investor earns a return because the full face value is paid at maturity. Treasury Bills are an important example.
+
+Thus, these instruments mainly differ in the way and timing in which the borrower pays interest and repays the principal.
+
+
+---
+
+A.3
+
+Net Asset Value, or NAV, means the value of one unit of a mutual fund. It shows the value of the fund's assets after deducting its liabilities and expenses.
+
+A mutual fund collects money from many investors and invests it in shares, bonds and other financial assets. Since the prices of these assets change, the value of the mutual fund also changes.
+
+NAV is calculated by taking the total market value of all the assets held by the fund, subtracting its liabilities and dividing the remaining value by the total number of units outstanding.
+
+For example, suppose a mutual fund has assets worth ₹110 crore and liabilities of ₹10 crore. Its net assets are ₹100 crore. If the fund has 10 crore units, its NAV will be ₹10 per unit.
+
+NAV is important because the purchase and redemption of units in an open-ended mutual fund are generally based on the applicable NAV. It also helps investors understand how the value of their investment is changing over time.
+
+Therefore, NAV represents the per-unit value of a mutual fund scheme.
+
+
+---
+
+A.4
+
+Moral hazard refers to a situation in which a person takes greater risk after entering into a contract because some of the possible loss will be borne by another person or institution.
+
+It usually arises because one party cannot fully observe the actions of the other party after the agreement has been made.
+
+For example, a person may borrow money from a bank for a relatively safe business project. After receiving the loan, the borrower may invest the money in a much riskier project because the borrower may receive most of the benefit if it succeeds, while the bank may suffer a large loss if it fails.
+
+Insurance provides another example. A person who has insured a vehicle may become less careful because part of the financial loss from an accident will be covered by the insurance company.
+
+Moral hazard creates difficulties for banks, insurance companies and other financial institutions. They try to reduce it through monitoring, collateral, conditions on loans, deductibles in insurance and proper checking of borrowers.
+
+Thus, moral hazard is mainly a problem of behaviour after a financial agreement has already been made.
+
+
+---
+
+B.5
+
+The financial system plays an important role in the economic development of a country. It includes banks, financial institutions, financial markets and other organisations that help transfer money from those who have surplus funds to those who need funds.
+
+One of its main functions is the mobilisation of savings. Households may keep their savings in banks, mutual funds, insurance schemes and other financial institutions. The financial system brings together these small savings and makes them available for productive investment.
+
+It also helps in the proper allocation of funds. Businesses that want to expand production, purchase machinery or start new projects need finance. Banks and financial markets provide these funds. In this way, savings are converted into investment.
+
+The financial system also supports capital formation. Economic development requires investment in factories, roads, power, transport, telecommunications and other infrastructure. Banks, development institutions and capital markets help provide finance for such projects.
+
+It encourages entrepreneurship by giving businesses access to loans and investment capital. Many entrepreneurs may have useful ideas but may not have enough personal funds to start or expand their businesses. The financial system helps overcome this problem.
+
+Another important role is providing working capital. Businesses need money for daily activities such as purchasing raw materials, paying wages and maintaining stocks. Banks provide short-term credit for these purposes.
+
+The financial system also makes payments and transactions easier. Banking services, electronic transfers, cards, UPI and other payment systems allow money to move quickly and safely between individuals and firms.
+
+Insurance and other financial services help individuals and businesses manage risk. This encourages investment because firms are better protected against unexpected financial losses.
+
+A developed financial system also helps monetary policy work effectively. Decisions of the central bank regarding interest rates, money supply and credit conditions are transmitted to the economy mainly through banks and financial markets.
+
+It also promotes financial inclusion by bringing banking, credit, insurance and payment services to people who were earlier outside the formal financial system.
+
+Therefore, a strong financial system supports savings, investment, production, employment and overall economic growth. The better the financial system performs these functions, the more effectively the resources of an economy can be used.
+
+
+---
+
+B.6
+
+The Capital Asset Pricing Model, commonly known as CAPM, explains the relationship between the risk of an investment and the return that an investor expects from it.
+
+The basic idea behind CAPM is simple. An investor will normally expect a higher return for taking greater risk. However, CAPM argues that investors should receive an additional return mainly for the type of risk that cannot be removed through diversification.
+
+Investment risk can be divided into systematic risk and unsystematic risk. Unsystematic risk is related to a particular company or industry. For example, poor management or a strike in one company may affect its share price. This type of risk can be reduced by investing in many different securities.
+
+Systematic risk affects the market as a whole. It may arise because of changes in interest rates, inflation, economic growth or other broad economic conditions. Diversification cannot completely remove this type of risk.
+
+CAPM measures systematic risk through beta. A beta of 1 means that the security tends to move roughly with the market. A beta greater than 1 means that the security is more sensitive to market movements. A beta below 1 means that it is less sensitive to the market.
+
+According to CAPM, the expected return on a security depends upon the risk-free return, the additional return expected from the market and the beta of the security.
+
+In simple form:
+
+Expected return = Risk-free rate + Beta × Market risk premium
+
+Suppose the risk-free return is 5 percent and the market is expected to provide 11 percent. The market risk premium is therefore 6 percent. If a share has a beta greater than 1, CAPM will normally give it a required return above the general market risk premium because it carries more systematic risk.
+
+The relationship between expected return and beta can also be shown through the Security Market Line. As beta increases, the return required by investors also increases.
+
+CAPM is based on some simplifying assumptions. Investors are assumed to behave rationally, have access to similar information and be able to diversify their investments. The model also assumes the existence of a risk-free asset and relatively well-functioning financial markets.
+
+CAPM is useful in several areas of finance. Investors can use it to compare the expected return of a security with its level of risk. Companies also use it to estimate the cost of equity when taking investment decisions.
+
+However, CAPM has limitations. Beta is usually estimated from past data and may not always show future risk accurately. Actual financial markets also contain taxes, transaction costs and differences in information. In addition, security returns may be influenced by factors other than beta.
+
+Even with these limitations, CAPM remains important because it gives a clear and useful way of understanding the relationship between systematic risk and expected return.
+
+
+---
+
+B.7
+
+The Time Value of Money means that a given amount of money available today is usually worth more than the same amount received in the future.
+
+For example, ₹10,000 received today is more valuable than ₹10,000 received one year later. This is because the ₹10,000 available today can be invested and can earn interest or some other return during that year.
+
+There are several reasons for the Time Value of Money. The first is the earning capacity of money. Money available today can be invested and may grow over time.
+
+The second reason is inflation. As prices rise, the purchasing power of money falls. Therefore, the same amount of money may be able to buy fewer goods and services in the future.
+
+The third reason is uncertainty. A payment that is expected in the future may be delayed or may not be received at all. Money received today is more certain.
+
+People also generally prefer to have money available earlier because it can be used for present consumption or investment.
+
+Two important ideas connected with the Time Value of Money are Future Value and Present Value.
+
+Future Value tells us how much money available today will become after earning a return for a particular period. For example, ₹10,000 invested at 10 percent for one year becomes ₹11,000.
+
+When the interest earned is also reinvested, future interest is earned on both the original amount and the previous interest. This is called compounding.
+
+Present Value works in the opposite direction. It tells us what an amount to be received in the future is worth today. The process of finding Present Value is called discounting.
+
+For example, if ₹10,000 today can become ₹11,000 after one year, then ₹11,000 to be received after one year has a present value of about ₹10,000 when the relevant rate is 10 percent.
+
+The Time Value of Money is important in investment decisions, loan calculations, bond valuation, retirement planning and capital budgeting. Businesses also use it when comparing the costs and benefits of projects that occur at different points in time.
+
+Therefore, the Time Value of Money is a basic financial principle which recognises that the timing of receiving or paying money affects its value.
+
+
+---
+
+B.8
+
+(a)
+
+Life insurance is an agreement between an individual and an insurance company under which the company agrees to pay a specified amount in return for the payment of premiums.
+
+The main purpose of life insurance is to provide financial protection against the death of the insured person. If the insured person dies during the period covered by the policy, the amount mentioned in the policy is paid to the nominee or beneficiaries.
+
+Life insurance is particularly important when a family depends financially on one earning member. If that person dies unexpectedly, the insurance amount can help the family meet its expenses and financial responsibilities.
+
+There are different forms of life insurance. Term insurance provides insurance protection for a fixed period. Whole life insurance provides protection for a much longer period, usually throughout the life of the insured person. Endowment policies combine insurance protection with savings.
+
+Life insurance can therefore provide financial security and may also support long-term saving and financial planning.
+
+Insurance companies invest a large part of the premiums they collect. Therefore, life insurance also contributes to the mobilisation of long-term savings in the economy.
+
+(b)
+
+General insurance includes forms of insurance other than life insurance. It protects individuals and businesses against financial losses arising from events such as accidents, illness, theft, fire and damage to property.
+
+Important forms of general insurance include motor insurance, health insurance, fire insurance, marine insurance, travel insurance and property insurance.
+
+The policyholder pays a premium to the insurance company. If the event covered by the policy occurs, the insurance company compensates the policyholder according to the terms of the policy.
+
+General insurance policies are usually taken for a limited period and may need to be renewed regularly.
+
+General insurance is important because accidents and unexpected events can create large financial losses. Insurance allows such risks to be shared among many policyholders instead of being borne entirely by one person or business.
+
+It also supports economic activity because businesses may be more willing to invest and operate when important risks can be insured.
+
+Thus, life insurance mainly protects against financial loss connected with human life, while general insurance protects against many other kinds of financial loss.
+
+
+---
+
+C.9
+
+The Indian financial system includes institutions, markets, instruments and services through which money moves from savers to borrowers and investors. Financial markets and financial services are two major parts of this system.
+
+(a)
+
+Financial markets are markets in which financial assets such as shares, bonds and short-term debt instruments are issued and traded. They help transfer funds from people and institutions that have surplus money to businesses, governments and others who require finance.
+
+The money market deals mainly with short-term funds, usually for periods of up to one year. Banks, companies, financial institutions and the government use the money market to meet short-term financial needs.
+
+Important money-market instruments include Treasury Bills, Commercial Paper, Certificates of Deposit and commercial bills. The Reserve Bank of India plays an important role in the functioning and regulation of the Indian money market.
+
+The capital market deals mainly with medium-term and long-term finance. It allows companies and governments to raise funds for investment and development.
+
+The capital market includes the primary market and the secondary market. In the primary market, new securities are issued for the first time. For example, a company may raise funds by issuing new shares to investors.
+
+The secondary market deals with securities that have already been issued. Investors buy and sell these securities among themselves. Stock exchanges such as the NSE and BSE provide organised markets for such trading.
+
+SEBI plays an important role in regulating the securities market and protecting investors.
+
+The debt market is another important part of the financial market. Governments and companies can raise money by issuing bonds and other debt securities. Government securities form a major part of the Indian debt market.
+
+The foreign exchange market deals with the buying and selling of different currencies. It is important for international trade, foreign investment and other international payments.
+
+Financial markets are important because they mobilise savings, provide liquidity, help determine the prices of financial assets and direct funds towards productive uses.
+
+(b)
+
+Financial services are the services provided by financial institutions to individuals, businesses and governments. They help people save, borrow, invest, make payments and manage financial risks.
+
+Banks provide some of the most important financial services. They accept deposits, provide loans and allow people to transfer and receive money. Modern banking services also include internet banking, cards, mobile banking and digital payments.
+
+Insurance companies provide protection against financial risks. Life insurance provides financial protection connected with human life, while general insurance covers risks such as illness, accidents, fire and property damage.
+
+Mutual funds collect money from many investors and invest it in shares, bonds and other financial assets. They allow even small investors to hold a diversified portfolio that is managed professionally.
+
+Merchant banking services help companies raise funds from financial markets. Merchant bankers may assist with the issue of shares and bonds and may also provide financial advice.
+
+Leasing allows a business to use an asset without purchasing it immediately. The user makes regular payments to the owner of the asset.
+
+Factoring helps businesses receive money against their unpaid bills or receivables. Instead of waiting for customers to pay later, a business can sell those receivables to a financial institution.
+
+Venture capital provides funds to new businesses and start-ups that have the possibility of high growth but may find it difficult to obtain ordinary bank finance.
+
+Credit rating agencies assess the ability of companies and other borrowers to repay their debt. Their ratings help investors understand the level of credit risk.
+
+Digital financial services have also become very important in India. UPI, mobile banking and electronic fund transfers have made financial transactions faster, cheaper and easier.
+
+Financial markets and financial services therefore work together. Financial markets provide the place and mechanism through which funds are raised and traded, while financial services make it easier for individuals and businesses to use the financial system. Together, they support savings, investment and economic development.
+
+
+---
