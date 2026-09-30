@@ -238,5 +238,108 @@ Digital financial services have also become very important in India. UPI, mobile
 
 Financial markets and financial services therefore work together. Financial markets provide the place and mechanism through which funds are raised and traded, while financial services make it easier for individuals and businesses to use the financial system. Together, they support savings, investment and economic development.
 
+---
+
+C.10
+
+Present Value and Future Value are based on the idea of the Time Value of Money. This principle states that money available today is normally worth more than the same amount available in the future.
+
+The reason is that money available today can be invested and can earn a return. Inflation may also reduce the purchasing power of future money. In addition, receiving money in the future involves some uncertainty.
+
+Future Value means the amount to which money available today will grow after earning interest or some other return for a particular period.
+
+For example, suppose a person invests ₹10,000 at an interest rate of 10 percent per year. At the end of one year, the amount becomes ₹11,000. Therefore, ₹11,000 is the Future Value of ₹10,000 after one year at 10 percent.
+
+If the ₹11,000 remains invested for another year at the same rate, the interest in the second year will be earned on ₹11,000 rather than only on the original ₹10,000. The amount will become ₹12,100.
+
+This process is called compounding. Under compounding, interest earned in earlier periods also begins to earn interest.
+
+The Future Value of an investment depends mainly on the amount invested, the rate of return and the time for which the money remains invested. A higher rate of return or a longer time period will normally result in a higher Future Value.
+
+Present Value works in the opposite direction. It means the current value of an amount of money that will be received in the future.
+
+Suppose a person is going to receive ₹11,000 one year from today. If the normal rate of return is 10 percent, ₹10,000 invested today would become ₹11,000 after one year. Therefore, the Present Value of ₹11,000 received one year later is approximately ₹10,000.
+
+The process of converting future money into its present value is called discounting.
+
+The rate used for discounting is called the discount rate. A higher discount rate normally gives a lower Present Value because money available today has a greater opportunity to earn returns.
+
+Present Value and Future Value are therefore closely related. Compounding takes present money forward in time and gives its Future Value. Discounting takes future money backward in time and gives its Present Value.
+
+These concepts have many uses in economics and finance.
+
+Businesses use Present Value when deciding whether to undertake an investment project. A project may require a large payment today but provide income over several future years. Since money received in different years does not have the same value, future income has to be converted into its present value before a proper comparison can be made.
+
+Present Value is also important in the valuation of bonds. A bond provides payments in the future. Its current value depends upon the present value of these future payments.
+
+Banks use the same principle in lending. A borrower receives money today and makes payments over future years. Interest reflects the fact that the lender gives up the use of the money for a certain period.
+
+Future Value is especially useful in saving and investment planning. A person can estimate how much a certain amount invested today may become after five, ten or twenty years.
+
+The same idea is useful for retirement planning. If a person knows how much money will be required in the future, Present Value can help estimate how much needs to be invested today.
+
+These concepts can also be applied to a series of regular payments. Regular payments made over a period, such as loan instalments or pension payments, are known as annuities.
+
+Thus, Present Value shows what future money is worth today, while Future Value shows what present money may become in the future. Both concepts are important because they allow financial amounts occurring at different points in time to be compared properly.
+
+---
+
+C.11
+
+A mutual fund is an investment arrangement in which money is collected from a large number of investors and invested in a portfolio of financial assets such as shares, bonds and money-market instruments. The fund is managed by professional fund managers, and investors receive units according to the amount they invest.
+
+Mutual funds can be classified in different ways.
+
+An open-ended fund allows investors to purchase and redeem units on a continuing basis. There is normally no fixed number of units. Investors can enter or leave the fund according to the applicable Net Asset Value. These funds therefore provide relatively high liquidity.
+
+A close-ended fund normally has a fixed number of units and a specified period. Investors usually purchase units when the fund is first offered. The units may later be traded on a stock exchange. Unlike open-ended funds, investors cannot normally redeem units directly from the fund whenever they wish.
+
+An equity fund invests mainly in shares of companies. Its main objective is usually capital growth over the long term. Equity funds may provide high returns when the stock market performs well, but their value can also change considerably.
+
+A debt fund invests mainly in bonds, government securities and other debt instruments. These funds usually have lower price fluctuations than equity funds, but they are still affected by changes in interest rates and the ability of borrowers to repay their debt.
+
+A hybrid fund invests in both equity and debt. It tries to combine the growth possibilities of shares with the relative stability of debt securities. The proportion invested in each depends on the particular scheme.
+
+A money-market fund invests mainly in short-term financial instruments such as Treasury Bills, Commercial Paper and Certificates of Deposit. These funds generally focus on liquidity and relatively low risk.
+
+An index fund tries to follow the performance of a particular market index such as the Nifty 50. Instead of selecting individual shares actively, the fund invests according to the composition of the index. Such funds often have lower management costs.
+
+An Exchange-Traded Fund, or ETF, is a fund whose units are bought and sold on a stock exchange. ETFs may follow a share index, bond index, commodity or some other asset.
+
+A sectoral fund invests mainly in one particular sector, such as banking, information technology or pharmaceuticals. A thematic fund follows a wider investment theme. These funds can perform well when their chosen area grows rapidly, but they also carry greater concentration risk.
+
+Mutual funds have several advantages.
+
+One important advantage is professional management. The money is managed by people who study financial markets and securities. This is useful for small investors who may not have enough time or knowledge to select individual investments.
+
+Another major advantage is diversification. A mutual fund generally invests in many different securities. Therefore, poor performance of one company may have only a limited effect on the entire portfolio.
+
+Mutual funds are also accessible to small investors. A person can invest a relatively small amount and still indirectly hold a share in a diversified portfolio.
+
+Open-ended mutual funds also provide liquidity because investors can normally redeem their units when required.
+
+There is also a wide variety of schemes. Investors can select equity, debt, hybrid, index or other funds according to their financial goals and ability to take risk.
+
+Mutual funds may also reduce some transaction and administrative costs because money from many investors is managed together.
+
+In India, mutual funds are regulated by SEBI. Rules relating to disclosure and investor protection help provide greater transparency to investors.
+
+However, mutual funds also have some disadvantages.
+
+The first is market risk. The value of a mutual fund can fall if the prices of the securities held by the fund decline. Mutual fund investments do not automatically guarantee profits.
+
+The second disadvantage is cost. Mutual funds charge management and operating expenses. These expenses reduce the final return earned by investors.
+
+Investors also have limited control over individual investment decisions. Once money is invested in a fund, decisions about buying and selling particular securities are generally taken by the fund manager.
+
+Professional management also does not guarantee good performance. Some actively managed funds may perform worse than the market index they are trying to beat.
+
+Debt funds face interest-rate risk and credit risk. Changes in market interest rates can affect the value of debt securities. There is also a possibility that the issuer of a bond may face difficulty in repayment.
+
+Sectoral and thematic funds may have higher risk because their investments are concentrated in a limited part of the economy.
+
+Finally, the large number of mutual fund schemes available can make selection difficult for an inexperienced investor.
+
+Thus, mutual funds provide investors with professional management, diversification, convenience and access to different financial markets. At the same time, they involve costs and different forms of risk. The choice of a mutual fund should therefore depend upon the investor's objective, investment period and ability to bear risk.
 
 ---
