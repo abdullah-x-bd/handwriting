@@ -1,0 +1,87 @@
+name: Industrial Economics Iqbal v5.3 Parallel Page OCR
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/industrial_economics_iqbal_v5_3_parallel.yml"
+  workflow_dispatch:
+
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - idx: 0
+            part: 01-A1
+          - idx: 1
+            part: 02-A2
+          - idx: 2
+            part: 03-A3
+          - idx: 3
+            part: 04-A4
+          - idx: 4
+            part: 05-B5
+          - idx: 5
+            part: 06-B6
+          - idx: 6
+            part: 07-B7
+          - idx: 7
+            part: 08-B8
+          - idx: 8
+            part: 09-C9
+          - idx: 9
+            part: 10-C10
+          - idx: 10
+            part: 11-C11
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Select answer block
+        env:
+          PART_INDEX: ${{ matrix.idx }}
+        run: |
+          python - <<'PY'
+          import os, re
+          from pathlib import Path
+          p=Path("answers/iqbal_smith_essay.txt")
+          text=p.read_text(encoding="utf-8")
+          blocks=[b.strip() for b in re.split(r"\n\s*---\s*\n",text) if b.strip()]
+          idx=int(os.environ["PART_INDEX"])
+          if len(blocks) != 11:
+              raise SystemExit(f"Expected 11 answer blocks, got {len(blocks)}")
+          p.write_text(blocks[idx]+"\n",encoding="utf-8")
+          print("Selected",idx,blocks[idx].splitlines()[0])
+          PY
+      - name: Install OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install "pytesseract>=0.3.13"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Validate Iqbal v5.3 renderer
+        run: python -m py_compile iqbal_smith_handmagic_v5_3.py
+      - name: Render answer with per-page OCR
+        run: python iqbal_smith_handmagic_v5_3.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: industrial-economics-iqbal-v5-3-${{ matrix.part }}
+          path: iqbal_smith_handmagic_v5_3_output/
+          retention-days: 7
