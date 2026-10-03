@@ -281,13 +281,14 @@ def review_page(page,entries,page_no):
     print(f"PAGE {page_no} below gate; reviewing {len(prose)} line crops",flush=True)
     changed=False
     for idx,e in enumerate(prose):
-        # Inline symbols are already deterministic pen strokes. Page OCR ignores
-        # punctuation/symbols, so do not replace those lines with symbol-less prose.
+        # Inline symbols are already deterministic pen strokes.
         if e.get("special"):
             continue
+        ex=e.get("x",LEFT)
+        emax=e.get("maxw",RIGHT-ex)
         y0=max(0,int(e["y"]-8))
         y1=min(PAGE_H,int(e["y"]+PROSE_LINE_STEP-2))
-        crop=page.crop((max(0,LEFT-15),y0,min(PAGE_W,RIGHT+15),y1))
+        crop=page.crop((max(0,int(ex)-15),y0,min(PAGE_W,RIGHT+15),y1))
         lscore,lread=ocr_bitmap_score(crop,e["text"],psm=7)
         print(f"LINE OCR page={page_no} y={e['y']} score={lscore:.3f} text={e['text']}",flush=True)
         if lscore>=LINE_REVIEW_GATE:
@@ -295,10 +296,10 @@ def review_page(page,entries,page_no):
         refined,rscore,rread=generate_refined_prose(e["text"],900000+page_no*100+idx)
         if refined is None or rscore is None or rscore<=lscore:
             continue
-        # Erase only this line's writing band, then draw the improved candidate.
+        # Preserve deterministic list/question labels while replacing only body handwriting.
         dr=ImageDraw.Draw(page)
-        dr.rectangle((LEFT-8,y0,RIGHT+8,y1),fill=BG)
-        draw_fixed_line(page,refined,LEFT,e["y"],PROSE_H,RIGHT-LEFT,width=3)
+        dr.rectangle((int(ex)-8,y0,RIGHT+8,y1),fill=BG)
+        draw_fixed_line(page,refined,ex,e["y"],PROSE_H,emax,width=4)
         e["segs"]=refined
         changed=True
 
@@ -1012,6 +1013,29 @@ def draw_manual_question_label(img,text,x,y):
     except Exception:
         return 260,90
 
+
+def draw_manual_list_number(img,text,x,y):
+    """Small deterministic list number; prose remains entirely Hand Magic."""
+    dr=ImageDraw.Draw(img)
+    font=None
+    for fp in (
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
+    ):
+        try:
+            font=ImageFont.truetype(fp,58)
+            break
+        except Exception:
+            pass
+    if font is None:
+        font=ImageFont.load_default()
+    dr.text((x,y+18),text,font=font,fill=INK)
+    try:
+        box=dr.textbbox((x,y+18),text,font=font)
+        return max(70,box[2]-box[0])
+    except Exception:
+        return 75
+
 source=SOURCE.read_text(encoding="utf-8")
 paragraphs=[q.strip() for q in source.split("\n\n") if q.strip()]
 
@@ -1045,18 +1069,41 @@ for para in paragraphs:
         y+=128+PARA_GAP
         continue
 
-    lines=balanced_lines(clean)
-    for ln in lines:
-        if y+PROSE_LINE_STEP>BOTTOM:
-            flush_page()
-        if any(ch in ln for ch in SPECIAL_SYMBOLS):
-            draw_special_line(page,ln,LEFT,y,PROSE_H,RIGHT-LEFT,width=4)
-            entries.append({"text":ln,"segs":None,"y":y,"heading":False,"special":True})
-        else:
-            seg=fast_raw_for(ln)
-            draw_fixed_line(page,seg,LEFT,y,PROSE_H,RIGHT-LEFT,width=4)
-            entries.append({"text":ln,"segs":seg,"y":y,"heading":False,"special":False})
-        y+=PROSE_LINE_STEP
+    list_match=re.match(r"^(\\d+\\.)\\s+(.*)$",clean)
+    if list_match:
+        list_no=list_match.group(1)
+        body=list_match.group(2)
+        lines=balanced_lines(body)
+        num_w=None
+        body_x=None
+        for li,ln in enumerate(lines):
+            if y+PROSE_LINE_STEP>BOTTOM:
+                flush_page()
+            if num_w is None:
+                num_w=draw_manual_list_number(page,list_no,LEFT,y)
+                body_x=LEFT+num_w+26
+            maxw=RIGHT-body_x
+            if any(ch in ln for ch in SPECIAL_SYMBOLS):
+                draw_special_line(page,ln,body_x,y,PROSE_H,maxw,width=4)
+                entries.append({"text":ln,"segs":None,"y":y,"heading":False,"special":True,"x":body_x,"maxw":maxw})
+            else:
+                seg=fast_raw_for(ln)
+                draw_fixed_line(page,seg,body_x,y,PROSE_H,maxw,width=4)
+                entries.append({"text":ln,"segs":seg,"y":y,"heading":False,"special":False,"x":body_x,"maxw":maxw})
+            y+=PROSE_LINE_STEP
+    else:
+        lines=balanced_lines(clean)
+        for ln in lines:
+            if y+PROSE_LINE_STEP>BOTTOM:
+                flush_page()
+            if any(ch in ln for ch in SPECIAL_SYMBOLS):
+                draw_special_line(page,ln,LEFT,y,PROSE_H,RIGHT-LEFT,width=4)
+                entries.append({"text":ln,"segs":None,"y":y,"heading":False,"special":True,"x":LEFT,"maxw":RIGHT-LEFT})
+            else:
+                seg=fast_raw_for(ln)
+                draw_fixed_line(page,seg,LEFT,y,PROSE_H,RIGHT-LEFT,width=4)
+                entries.append({"text":ln,"segs":seg,"y":y,"heading":False,"special":False,"x":LEFT,"maxw":RIGHT-LEFT})
+            y+=PROSE_LINE_STEP
     y+=PARA_GAP
 
 flush_page()
