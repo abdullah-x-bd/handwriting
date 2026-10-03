@@ -1,0 +1,105 @@
+name: Environmental Economics Hand Magic v5.3 Hybrid Labels
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/environmental_economics_handmagic_v5_3.yml"
+
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        include:
+          - slug: A1
+            order: "01"
+          - slug: A3
+            order: "02"
+          - slug: B5
+            order: "03"
+          - slug: B6
+            order: "04"
+          - slug: B7
+            order: "05"
+          - slug: C9
+            order: "06"
+          - slug: C11
+            order: "07"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr fonts-dejavu-core fonts-liberation
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install "pytesseract>=0.3.13"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Validate renderer
+        run: python -m py_compile environmental_economics_handmagic_v5_3.py
+      - name: Render ${{ matrix.slug }}
+        run: |
+          python environmental_economics_handmagic_v5_3.py \
+            answers/environmental_economics_20261003_${{ matrix.slug }}.txt \
+            environmental_piece_${{ matrix.order }}_${{ matrix.slug }} \
+            Environmental_Economics_${{ matrix.order }}_${{ matrix.slug }}_HAND_MAGIC_V5_3.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: env-answer-${{ matrix.order }}-${{ matrix.slug }}
+          path: environmental_piece_${{ matrix.order }}_${{ matrix.slug }}/Environmental_Economics_${{ matrix.order }}_${{ matrix.slug }}_HAND_MAGIC_V5_3.pdf
+          retention-days: 7
+
+  merge:
+    needs: render
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: env-answer-*
+          path: pieces
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "pypdf>=5"
+      - name: Merge answers in exam order
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader, PdfWriter
+          order=["01_A1","02_A3","03_B5","04_B6","05_B7","06_C9","07_C11"]
+          files=list(Path("pieces").rglob("*.pdf"))
+          writer=PdfWriter()
+          for key in order:
+              matches=[p for p in files if key in p.name]
+              if len(matches)!=1:
+                  raise SystemExit(f"Expected one PDF for {key}, found {matches}")
+              for page in PdfReader(str(matches[0])).pages:
+                  writer.add_page(page)
+          out=Path("Environmental_Economics_Selected_Answers_Iqbal_V5_3_FINAL.pdf")
+          with out.open("wb") as f:
+              writer.write(f)
+          print(out)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: environmental-economics-iqbal-v5-3-final
+          path: Environmental_Economics_Selected_Answers_Iqbal_V5_3_FINAL.pdf
+          retention-days: 7
