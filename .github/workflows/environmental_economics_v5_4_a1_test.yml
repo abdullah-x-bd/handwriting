@@ -1,0 +1,46 @@
+name: Environmental Economics Iqbal v5.4 A1 Readability Test
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/environmental_economics_v5_4_a1_test.yml"
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr fonts-dejavu-core fonts-liberation
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install "pytesseract>=0.3.13"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m py_compile environmental_economics_handmagic_v5_4.py
+      - name: Render A1 v5.4
+        run: |
+          python environmental_economics_handmagic_v5_4.py \
+            answers/environmental_economics_20261003_A1.txt \
+            environmental_v5_4_a1_test \
+            Environmental_Economics_A1_Iqbal_V5_4_TEST.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: environmental-v5-4-a1-test
+          path: environmental_v5_4_a1_test/
+          retention-days: 7
