@@ -1,0 +1,17 @@
+[HEADING] B.6
+
+Common pool resources are natural or man-made resources that are shared by many people. It is difficult to prevent people from using them, but the use of the resource by one person reduces the amount available to others.
+
+Examples include fisheries, forests, groundwater, grazing lands, rivers and village ponds.
+
+Common pool resources have two main features. First, exclusion is difficult because preventing people from accessing the resource may be costly. Second, they are rival in use because excessive use by one person reduces the resource available to others.
+
+The tragedy of the commons occurs when individuals use a common resource mainly for their own benefit without considering the cost imposed on other users. Since each person receives the private benefit of using more of the resource, there is an incentive to overuse it.
+
+For example, if a common grazing field is available to all villagers, each cattle owner may try to increase the number of animals. If everyone does this, the grass may be exhausted and the grazing land may become degraded.
+
+Similarly, excessive fishing can reduce fish populations, while excessive groundwater extraction can lower the water table.
+
+The tragedy of the commons can be reduced through clear rules, community management, government regulation, limits on resource use and well-defined property rights.
+
+Therefore, proper management is necessary to prevent the over-exploitation of common pool resources.
