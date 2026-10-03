@@ -182,42 +182,109 @@ def ocr_score(seq,text):
 
 
 def generate_fast_prose(text,key):
-    """V5.4 readability-first generation.
+    """V5.4 readability-first generation with a hard rescue pass.
 
-    Generate several candidates from the two clearest writers, reject unstable
-    geometry, then use OCR only on the strongest candidates. This keeps the
-    page recognisably handwritten while favouring letterforms a human can read.
+    First search the two clearest Hand Magic writers. If OCR still considers
+    the line weak, run extra stochastic attempts rather than accepting a line
+    that is likely to be difficult for a human to read.
     """
     text=safe_text(text)
     seed_key=sum((i+1)*ord(c) for i,c in enumerate(text))+key*977
     candidates=[]
-    for style_index,bias,pref_penalty in FAST_PROSE_STYLES:
+
+    def add_candidate(style_index,bias,pref_penalty,attempt,seed_base):
         pt,real=STYLE_DATA[style_index]
+        seed=seed_base+style_index*149+seed_key+attempt*7919
+        torch.manual_seed(seed); np.random.seed(seed)
+        model.EOS=False
+        gen,_=generate_conditional_sequence(
+            model,text,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+            bias=bias,prime=True,prime_seq=pt,real_text=real,is_map=False,batch_size=1)
+        eos=bool(model.EOS)
+        seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
+        q=quality(seq,text,eos,short=False)
+        if q<=36:
+            candidates.append((q+pref_penalty,q,seq,style_index,bias))
+        return q
+
+    for style_index,bias,pref_penalty in FAST_PROSE_STYLES:
         for attempt in range(3):
-            seed=540261003+style_index*149+seed_key+attempt*7919
-            torch.manual_seed(seed); np.random.seed(seed)
-            model.EOS=False
-            gen,_=generate_conditional_sequence(
-                model,text,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
-                bias=bias,prime=True,prime_seq=pt,real_text=real,is_map=False,batch_size=1)
-            eos=bool(model.EOS)
-            seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
-            q=quality(seq,text,eos,short=False)
-            if q<=36:
-                candidates.append((q+pref_penalty,q,seq,style_index,bias))
+            add_candidate(style_index,bias,pref_penalty,attempt,540261003)
+
     if not candidates:
         raise RuntimeError(f"V5.4 Hand Magic produced no stable candidate for {text!r}")
 
     candidates.sort(key=lambda z:z[0])
-    # OCR the best geometry candidates only, avoiding the V5.4 failure mode
-    # where a visually messy fast sample could survive until page review.
     best=None
-    for item in candidates[:4]:
+    seen=set()
+    def consider(item):
+        nonlocal best
         _,q,seq,style_index,bias=item
+        ident=(style_index,id(seq))
+        if ident in seen:
+            return
+        seen.add(ident)
         oscore,ogot=ocr_score(seq,text)
         rank=(oscore,-q)
         if best is None or rank>best[0]:
             best=(rank,q,seq,style_index,bias,oscore,ogot)
+
+    for item in candidates[:4]:
+        consider(item)
+
+    # Rescue only weak lines. Extra attempts are much cheaper than accepting
+    # handwriting that is visibly hard to decipher.
+    if best is None or best[5] < 0.78:
+        rescue=[]
+        for style_index,bias,pref_penalty in FAST_PROSE_STYLES:
+            for attempt in range(3,8):
+                pt,real=STYLE_DATA[style_index]
+                seed=740261003+style_index*173+seed_key+attempt*6151
+                torch.manual_seed(seed); np.random.seed(seed)
+                model.EOS=False
+                gen,_=generate_conditional_sequence(
+                    model,text,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+                    bias=bias,prime=True,prime_seq=pt,real_text=real,is_map=False,batch_size=1)
+                eos=bool(model.EOS)
+                seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
+                q=quality(seq,text,eos,short=False)
+                if q>36:
+                    continue
+                oscore,ogot=ocr_score(seq,text)
+                rank=(oscore,-q)
+                if best is None or rank>best[0]:
+                    best=(rank,q,seq,style_index,bias,oscore,ogot)
+                if oscore>=0.88:
+                    break
+            if best is not None and best[5]>=0.88:
+                break
+
+    # Last-resort broader writers only when the clear writers never produced
+    # a reasonably readable line.
+    if best is None or best[5] < 0.70:
+        for style_index,bias,pref_penalty in PROSE_STYLES[2:]:
+            pt,real=STYLE_DATA[style_index]
+            for attempt in range(3):
+                seed=840261003+style_index*191+seed_key+attempt*5779
+                torch.manual_seed(seed); np.random.seed(seed)
+                model.EOS=False
+                gen,_=generate_conditional_sequence(
+                    model,text,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+                    bias=bias,prime=True,prime_seq=pt,real_text=real,is_map=False,batch_size=1)
+                eos=bool(model.EOS)
+                seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
+                q=quality(seq,text,eos,short=False)
+                if q>34:
+                    continue
+                oscore,ogot=ocr_score(seq,text)
+                rank=(oscore,-(q+pref_penalty))
+                if best is None or rank>best[0]:
+                    best=(rank,q,seq,style_index,bias,oscore,ogot)
+                if oscore>=0.84:
+                    break
+            if best is not None and best[5]>=0.84:
+                break
+
     if best is None:
         item=candidates[0]
         best=((0.0,-item[1]),item[1],item[2],item[3],item[4],0.0,"")
@@ -1069,7 +1136,7 @@ for para in paragraphs:
         y+=128+PARA_GAP
         continue
 
-    list_match=re.match(r"^(\\d+\\.)\\s+(.*)$",clean)
+    list_match=re.match(r"^(\d+\.)\s+(.*)$",clean)
     if list_match:
         list_no=list_match.group(1)
         body=list_match.group(2)
