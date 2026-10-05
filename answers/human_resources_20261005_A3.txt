@@ -1,0 +1,15 @@
+[HEADING] A.3
+
+The Human Development Index, or HDI, is an index used to measure the overall level of human development in a country. It was introduced by the United Nations Development Programme. It gives a broader picture of development than income alone.
+
+HDI is based on three main dimensions of human life.
+
+The first is health, which is measured through life expectancy at birth. A higher life expectancy generally indicates better health conditions.
+
+The second is education. It considers the level of schooling received by adults and the expected years of schooling for children.
+
+The third is standard of living, which is measured through income per person.
+
+Countries are ranked according to their HDI performance. A higher HDI indicates better achievements in health, education and living standards.
+
+The importance of HDI is that development is not treated only as an increase in national income. A country may have high income but still perform poorly in education or health. Therefore, HDI provides a more complete measure of people's well being and quality of life.
