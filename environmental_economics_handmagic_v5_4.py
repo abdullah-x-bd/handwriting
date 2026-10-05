@@ -212,7 +212,37 @@ def generate_fast_prose(text,key):
             add_candidate(style_index,bias,pref_penalty,attempt,540261003)
 
     if not candidates:
-        raise RuntimeError(f"V5.4 Hand Magic produced no stable candidate for {text!r}")
+        # Emergency stability rescue. Some perfectly ordinary phrases can make
+        # the recurrent generator terminate too early for the usual geometry
+        # gate. Search all available writers with fresh seeds and choose the
+        # clearest completed sequence instead of aborting the whole answer.
+        emergency=[]
+        for style_index,bias,pref_penalty in PROSE_STYLES:
+            pt,real=STYLE_DATA[style_index]
+            for attempt in range(10):
+                seed=940261003+style_index*211+seed_key+attempt*6521
+                torch.manual_seed(seed); np.random.seed(seed)
+                model.EOS=False
+                gen,_=generate_conditional_sequence(
+                    model,text,device,VocabSingleton.char_to_id,VocabSingleton.idx_to_char,
+                    bias=bias,prime=True,prime_seq=pt,real_text=real,is_map=False,batch_size=1)
+                eos=bool(model.EOS)
+                seq=data_denormalization(StatsSingleton.train_mean,StatsSingleton.train_std,gen)[0]
+                q=quality(seq,text,eos,short=False)
+                if not eos or len(seq) < max(120,len(text)*5):
+                    continue
+                oscore,ogot=ocr_score(seq,text)
+                emergency.append((oscore,-q,seq,style_index,bias,q,ogot))
+                if oscore>=0.78 and q<=60:
+                    break
+            if emergency and max(z[0] for z in emergency)>=0.84:
+                break
+        if emergency:
+            emergency.sort(key=lambda z:(z[0],z[1]),reverse=True)
+            e=emergency[0]
+            print(f"V5.4 EMERGENCY OCR={e[0]:.3f} HM={e[5]:.2f} style={e[3]} text={text}",flush=True)
+            return seq_segments(e[2])
+        raise RuntimeError(f"V5.4 Hand Magic produced no completed emergency candidate for {text!r}")
 
     candidates.sort(key=lambda z:z[0])
     best=None
