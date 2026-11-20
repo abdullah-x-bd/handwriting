@@ -1,0 +1,169 @@
+HOME ASSIGNMENT
+MEO4252 (2026-27)
+(a) Indoor Pollution Is More Dangerous Than Outdoor Pollution
+
+Air pollution refers to the presence of harmful physical, chemical or biological substances in the atmosphere. Although outdoor air pollution is a major environmental concern, indoor pollution can pose greater individual health risks due to prolonged exposure, inadequate ventilation and accumulation of pollutants in enclosed spaces.
+
+According to the United States Environmental Protection Agency (US EPA), Americans spend approximately 90% of their time indoors, where concentrations of certain pollutants are often two to five times higher than outdoor concentrations. [1]
+
+Major sources of indoor pollution
+Cooking and fuel combustion: CO, NO2, PM2.5
+Paints and furniture: Formaldehyde, VOCs
+Tobacco smoke: CO, benzene, particulate matter
+Dampness: Mould and fungal spores
+Soil beneath buildings: Radon
+===PAGE===
+Reasons for greater indoor pollution risks
+1. Prolonged exposure: People spend considerable time inside homes, offices and educational institutions.
+2. Poor ventilation: Limited air circulation causes pollutants to accumulate.
+3. Incomplete combustion: Burning biomass, coal and kerosene releases carbon monoxide and harmful particulate matter.
+4. Proximity to sources: Pollutants are inhaled before sufficient atmospheric dilution occurs.
+
+The inhaled pollutant dose under constant exposure conditions is expressed as:
+@dose
+Where C is pollutant concentration, Q is breathing rate and t is exposure duration.
+
+Health effects and control
+According to WHO, household air pollution caused approximately 2.9 million premature deaths globally in 2021. Associated diseases include lung cancer, stroke, respiratory infections, cardiovascular diseases and chronic obstructive pulmonary disease (COPD). [2]
+Indoor pollution can be controlled through adequate ventilation, clean cooking fuels, kitchen exhaust systems, air filtration and avoidance of indoor smoking.
+Conclusion: Indoor pollution can be more dangerous due to prolonged exposure and higher concentrations of certain pollutants. However, the relative risk depends upon pollutant toxicity, ventilation and exposure conditions.
+===PAGE===
+(b) Clean Air Is Costly but Dirty Air Costs More
+
+Maintaining clean air requires investment in pollution-control technologies, cleaner fuels, industrial modifications and environmental monitoring. However, the economic and social consequences of uncontrolled air pollution often exceed the expenditure required for its prevention.
+
+Cost of maintaining clean air
+The major expenditures include installation and operation of electrostatic precipitators, bag filters, scrubbers, catalytic converters and emission monitoring systems. Transition towards cleaner fuels and energy-efficient technologies also requires capital investment.
+
+Economic consequences of dirty air
+Healthcare costs: Increased respiratory and cardiovascular diseases result in greater medical expenditure.
+Productivity losses: Illnesses, absenteeism and premature mortality reduce economic output.
+Agricultural damage: Ground-level ozone adversely affects photosynthesis and crop productivity.
+Material deterioration: Acid deposition accelerates corrosion and damages infrastructure.
+Environmental damage: Pollution adversely affects ecosystems, visibility and climatic conditions.
+===PAGE===
+Economic evidence
+The World Bank estimated that the global health damage associated with fine particulate air pollution amounted to US$8.1 trillion in 2019, equivalent to 6.1% of global GDP. [3]
+In India, economic losses from premature deaths and illnesses attributable to air pollution amounted to US$36.8 billion in 2019, equivalent to 1.36% of India's GDP. [4]
+The US EPA estimated that the 1990 Clean Air Act Amendments would generate annual benefits of approximately US$2 trillion in 2020 against annual compliance costs of US$65 billion. [5]
+@graph
+Fig. 1: Estimated costs and benefits of the US Clean Air Act in 2020. Source: US EPA (2011).
+The benefit-cost ratio is:
+@bcr
+@bcrnum
+Conclusion: Investment in clean air reduces healthcare expenditure, improves productivity and protects natural resources. Therefore, pollution prevention is economically preferable to bearing the consequences of dirty air.
+===PAGE===
+(c) Description and Importance of International Environmental Agreements
+
+1. United Nations Framework Convention on Climate Change (UNFCCC)
+The UNFCCC is an international environmental treaty adopted on 9 May 1992 and opened for signature at the Rio Earth Summit. It entered into force on 21 March 1994.
+Its primary objective is to stabilise atmospheric greenhouse gas concentrations at a level that prevents dangerous human interference with the climate system.
+
+Major provisions:
+Common but Differentiated Responsibilities and Respective Capabilities (CBDR-RC).
+Preparation of national greenhouse gas emission inventories.
+Development of climate mitigation and adaptation programmes.
+Financial and technological assistance to developing countries.
+Establishment of the Conference of the Parties (COP).
+Importance: The UNFCCC established an international framework for addressing climate change through scientific research, technological cooperation and coordinated environmental policies. It also provided the foundation for the Kyoto Protocol and Paris Agreement. [6]
+
+2. Kyoto Protocol
+The Kyoto Protocol was adopted on 11 December 1997 at COP3 in Kyoto, Japan, and entered into force on 16 February 2005.
+It established legally binding greenhouse gas emission reduction targets for participating industrialised countries and economies in transition. During its first commitment period (2008-2012), their overall targets corresponded to an average reduction of approximately 5% below 1990 emission levels.
+It originally covered six greenhouse gases or groups of gases: CO2, CH4, N2O, HFCs, PFCs and SF6.
+Market-based mechanisms:
+1. Clean Development Mechanism (CDM): Earning emission credits through eligible projects in developing countries.
+2. Joint Implementation (JI): Earning emission credits through projects in other countries having emission reduction commitments.
+3. International Emissions Trading (IET): Trading emission units among eligible countries.
+Importance: The Protocol introduced legally binding emission targets, international carbon markets and systematic emission accounting. However, limited participation and the absence of binding reduction targets for developing countries restricted its overall effectiveness. [7]
+===PAGE===
+3. Paris Agreement, 2015
+The Paris Agreement was adopted on 12 December 2015 at COP21 in Paris and entered into force on 4 November 2016. It is a legally binding international climate treaty involving both developed and developing countries.
+Major objectives and provisions:
+Restrict global warming to well below 2 degrees C above pre-industrial levels while pursuing a 1.5 degrees C limit.
+Strengthen climate adaptation and resilience.
+Require countries to prepare Nationally Determined Contributions (NDCs) and communicate updated contributions every five years.
+Promote climate finance and technological cooperation.
+Conduct a global stocktake every five years to evaluate collective progress.
+Importance: Unlike the Kyoto Protocol, the Paris Agreement requires climate contributions from all parties. It promotes renewable energy, energy efficiency, industrial decarbonisation and sustainable development while recognising different national circumstances. [8]
+
+4. Vienna Convention and Montreal Protocol
+Vienna Convention (1985)
+The Vienna Convention for the Protection of the Ozone Layer was adopted on 22 March 1985. It established a framework for international scientific research, atmospheric monitoring and information exchange concerning ozone depletion.
+The stratospheric ozone layer protects living organisms from harmful ultraviolet radiation. The Convention did not establish specific phase-out targets but provided the foundation for the Montreal Protocol.
+Montreal Protocol (1987)
+The Montreal Protocol was adopted on 16 September 1987 and entered into force on 1 January 1989.
+It regulates and progressively eliminates the production and consumption of ozone-depleting substances such as chlorofluorocarbons (CFCs), halons and hydrochlorofluorocarbons (HCFCs).
+Mechanism of ozone depletion:
+Ultraviolet radiation decomposes CFC molecules, releasing chlorine radicals.
+@reaction1
+@reaction2
+@reaction3
+Overall reaction:
+@reaction4
+The regenerated chlorine radical repeatedly participates in ozone destruction.
+Importance: The Montreal Protocol has substantially reduced ozone-depleting substances. According to the 2022 scientific assessment, ozone levels are expected to recover to their 1980 values around 2040 for much of the world, 2045 over the Arctic and 2066 over Antarctica, provided existing policies continue.
+The Kigali Amendment (2016) additionally introduced the phase-down of hydrofluorocarbons (HFCs) because of their high global warming potential. [9]
+===PAGE===
+(d) Fourier Transform Infrared Spectroscopy (FTIR)
+1. Introduction and operating principle
+Fourier Transform Infrared Spectroscopy (FTIR) is an analytical technique used to identify and quantify chemical substances through their characteristic absorption of infrared radiation.
+Molecules absorb infrared radiation at frequencies corresponding to their vibrational energy transitions. A vibration is infrared active when it produces a change in the molecular dipole moment.
+The absorbed energy is expressed as:
+@energy
+Where h is Planck's constant, c is the speed of light, nu is frequency and nu tilde is wavenumber.
+FTIR commonly operates within the mid-infrared region of 400-4000 inverse centimetres.
+2. Instrumentation and working
+The principal component of an FTIR instrument is the Michelson interferometer, consisting of a beam splitter, fixed mirror and movable mirror.
+@ftir
+Fig. 2: Schematic diagram of FTIR spectroscopy for gaseous pollutant analysis.
+===PAGE===
+The working procedure is as follows:
+1. A broadband infrared source generates radiation.
+2. The beam splitter divides the radiation towards the fixed and movable mirrors.
+3. Reflected beams recombine and produce interference. The optical path difference is delta = 2x, where x is mirror displacement.
+4. The recombined radiation passes through the gas sample cell, where molecules absorb characteristic wavelengths.
+5. The detector records an interferogram, representing intensity variations with optical path difference.
+6. Fourier transformation converts the interferogram into an infrared spectrum for chemical identification and concentration determination. [10]
+
+3. Quantitative analysis
+The concentration of pollutants is determined using the Beer-Lambert law:
+@beer
+Where:
+A = Absorbance
+I0 = Background radiation intensity
+I = Transmitted radiation intensity
+epsilon = Molar absorption coefficient
+C = Molar concentration
+L = Optical path length
+Therefore,
+@conc
+For a gaseous mixture, the total absorbance is approximately the sum of individual gas absorbances:
+@mixture
+This enables simultaneous quantitative analysis of multiple gases.
+===PAGE===
+4. Application to gaseous pollutants
+FTIR can measure pollutants such as CO, CO2, CH4, SO2, NO, NO2, NH3 and various volatile organic compounds.
+In extractive FTIR, exhaust gases are withdrawn from industrial stacks through a sampling probe and particulate filter. A heated sampling line transports the gases to the FTIR gas cell, minimising condensation and associated sampling losses.
+A multipass gas cell can improve measurement sensitivity by increasing the effective optical path length. Characteristic absorption spectra are compared with reference spectra to determine pollutant concentrations.
+US EPA Method 320 establishes procedures for measuring organic and inorganic vapour-phase emissions using extractive FTIR. [11]
+Major applications include industrial stack monitoring, automobile exhaust analysis, combustion studies and greenhouse gas monitoring.
+
+5. Strengths and limitations
+Strengths: Simultaneous measurement of multiple gases; rapid spectral acquisition; high spectral resolution; non-destructive optical analysis; suitable for continuous monitoring; broad spectral coverage.
+Limitations: High initial equipment cost; water vapour and CO2 interference; overlapping absorption bands; requires reference spectra and calibration; temperature and pressure affect measurements; sampling losses may affect accuracy.
+Conventional FTIR cannot readily detect homonuclear diatomic gases such as O2, N2 and H2 because their fundamental vibrations do not produce a changing electric dipole moment.
+Conclusion: FTIR is a powerful technique for gaseous pollutant measurement. Its simultaneous multicomponent analysis makes it particularly valuable in combustion engineering, industrial emission monitoring and environmental pollution control.
+===PAGE===
+References
+[1] US EPA, Indoor Air Quality, Report on the Environment.
+[2] WHO, Household Air Pollution and Health, Fact Sheet.
+[3] World Bank (2022), The Global Health Cost of PM2.5 Air Pollution: A Case for Action Beyond 2021.
+[4] India State-Level Disease Burden Initiative (2021), Health and Economic Impact of Air Pollution in the States of India, The Lancet Planetary Health, 5(1), e25-e38.
+[5] US EPA (2011), The Benefits and Costs of the Clean Air Act from 1990 to 2020.
+[6] United Nations (1992), United Nations Framework Convention on Climate Change.
+[7] UNFCCC (1997), Kyoto Protocol.
+[8] UNFCCC (2015), Paris Agreement.
+[9] UNEP/WMO (2022), Scientific Assessment of Ozone Depletion: 2022.
+[10] University of Stuttgart, Institute of Physics, Fourier Transformed Infrared (FTIR) Spectroscopy.
+[11] US EPA (2019), Method 320: Measurement of Vapor Phase Organic and Inorganic Emissions by Extractive FTIR Spectroscopy.
