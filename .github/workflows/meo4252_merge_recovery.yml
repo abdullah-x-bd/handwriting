@@ -1,0 +1,49 @@
+name: MEO4252 HandMagic v5.4 Merge Recovery
+on:
+  push:
+    branches: [meo4252-handmagic-v54]
+    paths:
+      - ".github/workflows/meo4252_merge_recovery.yml"
+  workflow_dispatch:
+permissions:
+  actions: read
+  contents: read
+jobs:
+  merge:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: abdullah-x-bd/handwriting
+          run-id: 44677423801
+          pattern: meo4252-v54-page-*
+          path: pieces
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "pypdf>=5"
+      - name: Merge original HandMagic pages in numerical order
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader, PdfWriter
+          files=sorted(Path("pieces").rglob("page_*.pdf"),key=lambda p:int(p.stem.split("_")[-1]))
+          assert [p.name for p in files]==[f"page_{i:02d}.pdf" for i in range(1,11)],files
+          writer=PdfWriter()
+          for f in files:
+              reader=PdfReader(f)
+              assert len(reader.pages)==1,f
+              writer.add_page(reader.pages[0])
+          output=Path("MEO4252_Iqbal_HandMagic_v5_4.pdf")
+          with output.open("wb") as f:
+              writer.write(f)
+          assert len(PdfReader(output).pages)==10
+          print("Verified ten-page PDF:",output)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MEO4252-Iqbal-HandMagic-v5.4-PDF
+          path: MEO4252_Iqbal_HandMagic_v5_4.pdf
+          if-no-files-found: error
+          retention-days: 7
