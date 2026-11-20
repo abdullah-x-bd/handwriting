@@ -1,0 +1,92 @@
+name: MEO4252 Iqbal HandMagic v5.4
+on:
+  push:
+    branches: [meo4252-handmagic-v54]
+    paths:
+      - ".github/workflows/meo4252_handmagic_v54.yml"
+      - "meo4252_handmagic_v54.py"
+      - "answers/meo4252_20261120.txt"
+  workflow_dispatch:
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        page: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: OmarMusayev/ai-handwriting-generator
+          path: handmagic
+          lfs: true
+      - working-directory: handmagic
+        run: |
+          git lfs install
+          git lfs pull
+          test -s weights/lstm.pt
+          test -s data/strokes.npy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install original v5.4 dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr
+          python -m pip install --upgrade "pip<26"
+          python -m pip install --only-binary=:all: "numpy>=1.26,<3" "pillow>=10" "matplotlib>=3.8,<4" "reportlab>=4"
+          python -m pip install "pytesseract>=0.3.13"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Render page with Iqbal v5.4
+        run: |
+          python -m py_compile meo4252_handmagic_v54.py
+          python meo4252_handmagic_v54.py ${{ matrix.page }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: meo4252-v54-page-${{ matrix.page }}
+          path: meo4252_render/page_*.pdf
+          if-no-files-found: error
+          retention-days: 7
+  merge:
+    needs: render
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: meo4252-v54-page-*
+          path: pieces
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install "pypdf>=5"
+      - name: Merge and validate ten A4 pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader, PdfWriter
+          files=sorted(Path("pieces").rglob("page_*.pdf"))
+          assert len(files)==10,files
+          writer=PdfWriter()
+          for i,f in enumerate(files,1):
+              assert f.name==f"page_{i:02d}.pdf",f
+              reader=PdfReader(f)
+              assert len(reader.pages)==1
+              writer.add_page(reader.pages[0])
+          output=Path("MEO4252_Iqbal_HandMagic_v5_4.pdf")
+          with output.open("wb") as f:
+              writer.write(f)
+          assert len(PdfReader(output).pages)==10
+          print(output)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MEO4252-Iqbal-HandMagic-v5.4-PDF
+          path: MEO4252_Iqbal_HandMagic_v5_4.pdf
+          if-no-files-found: error
+          retention-days: 7
