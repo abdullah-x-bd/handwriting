@@ -53,7 +53,7 @@ def eqnode(key):
     if key=="dose":return rx(t("D"),e(),t("C"),g("×"),t("Q"),g("×"),t("t"))
     if key=="bcr":return rx(bcr(),e(),FR(t("Economic benefits"),t("Compliance costs")))
     if key=="bcrnum":return rx(bcr(),e(),FR(t("2000"),t("65")),g("≈"),t("30.8"))
-    if key=="reaction1":return rx(R(cf2(),small("2"),gap=1),plusop(),R(t("h"),nu(),gap=4),g("→"),rad(cf2()),plusop(),chl())
+    if key=="reaction1":return rx(SUB(cf2(),small("2")),plusop(),R(t("h"),nu(),gap=4),g("→"),rad(cf2()),plusop(),chl())
     if key=="reaction2":return rx(chl(),plusop(),o3(),g("→"),clor(),plusop(),o2())
     if key=="reaction3":return rx(clor(),plusop(),t("O"),g("→"),chl(),plusop(),o2())
     if key=="reaction4":return rx(o3(),plusop(),t("O"),g("→"),R(t("2"),o2(),gap=4))
